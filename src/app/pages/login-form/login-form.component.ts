@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login-form.component.html',
-  standalone: true
+  styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
@@ -21,13 +23,16 @@ export class LoginFormComponent {
 
   onSubmit() {
     const { email, password } = this.loginForm.value;
-    const usuario = this.authService.loginWithCredentials(email, password); // <-- este devuelve algo
   
-    if (usuario) {
-      this.router.navigate(['/home']);
-    } else {
-      this.error = 'Credenciales incorrectas';
-    }
+    this.authService.loginWithCredentials(email, password).subscribe({
+      next: usuario => {
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.error = 'Credenciales incorrectas';
+      }
+    });
   }
+  
   
 }

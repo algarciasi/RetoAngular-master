@@ -23,8 +23,15 @@ export class AuthService {
   }
 
   loginWithCredentials(email: string, password: string): Observable<Usuario> {
-    return this.http.post<Usuario>('http://localhost:8080/api/login', { email, password }).pipe(
+    return this.http.post<Usuario>(
+      'http://localhost:8086/auth/login',
+      { email, password },
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
+    ).pipe(
       tap(usuario => this._usuario.set(usuario))
     );
   }
+  
 }
