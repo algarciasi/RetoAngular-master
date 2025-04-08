@@ -24,7 +24,7 @@ export class LoginFormComponent {
   onSubmit() {
     const { email, password } = this.loginForm.value;
   
-    this.authService.loginWithCredentials(email, password).subscribe({
+    this.authService.loginPass(email, password).subscribe({
       next: usuario => {
         this.router.navigate(['/home']);
       },
