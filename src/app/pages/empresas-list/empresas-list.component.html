@@ -1,0 +1,16 @@
+<h2>Listado de Empresas</h2>
+@if (arrEmpresas.length > 0) {
+  <ul>
+    @for (empresa of arrEmpresas; track empresa.idEmpresa) {
+      <li>
+        <strong>{{ empresa.nombre }}</strong> - {{ empresa.idEmpresa }}<br>
+        CIF: {{ empresa.cif }}<br>
+        Dirección: {{ empresa.direccion }}<br>
+        Pais: {{ empresa.pais }}<br>
+        <!-- Usuario: {{ empresa.usuario?.nombre }} {{ empresa.usuario?.apellidos }} ({{ empresa.usuario?.email }})-->
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay empresas registradas.</p>
+}
