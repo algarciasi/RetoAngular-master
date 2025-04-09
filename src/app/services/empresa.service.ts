@@ -1,21 +1,55 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Empresa } from '../interface/empresa';
 
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmpresaService {
-
   httpClient = inject(HttpClient);
-  private baseUrl : string = 'http://localhost:8086/empresas';
+  private baseUrl: string = 'http://localhost:8086/empresas';
   insertObservable: any;
 
-  constructor() { }
+  constructor() {}
 
-  getAllWithObservables(): Observable<Empresa[]>{
+  /*getAllWithObservables(): Observable<Empresa[]>{
     return this.httpClient.get<Empresa[]>(`${this.baseUrl}/todas`);
+  }*/
+
+  getAllWithObservables(): Observable<Empresa[]> {
+    // Recuperar las credenciales de localStorage (¡CUIDADO CON LA SEGURIDAD!)
+    const email = localStorage.getItem('email');
+    const password = localStorage.getItem('password');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    if (
+      email &&
+      password &&
+      typeof window !== 'undefined' &&
+      typeof window.btoa !== 'undefined'
+    ) {
+      headers = headers.set(
+        'Authorization',
+        'Basic ' + window.btoa(email + ':' + password)
+      );
+    } else {
+      console.error(
+        'No se encontraron las credenciales o btoa no está disponible.'
+      );
+      // Manejar el error adecuadamente
+      return new Observable((observer) =>
+        observer.error('No se encontraron las credenciales')
+      );
+    }
+
+    return this.httpClient.get<Empresa[]>(`${this.baseUrl}/todas`, {
+      headers: headers,
+    });
   }
 
   /*getByIdWithObservable(_id: string): Observable<Empresa>{
