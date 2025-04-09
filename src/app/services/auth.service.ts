@@ -25,7 +25,7 @@ export class AuthService {
     localStorage.removeItem('email');
     localStorage.removeItem('password');
     // Navega a la página de inicio
-    this.router.navigate(["/home"]);
+    this.router.navigate(['/home']);
   }
 
   loginPass(email: string, password: string): Observable<any> {
