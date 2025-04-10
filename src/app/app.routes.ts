@@ -3,6 +3,7 @@ import { EmpresasListComponent } from './pages/empresas-list/empresas-list.compo
 import { UsuariosFormComponent } from './pages/usuarios-form/usuarios-form.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { VacantesListComponent } from './pages/vacantes-list/vacantes-list.component';
+import { SolicitudesListComponent } from './pages/solicitudes-list/solicitudes-list.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -10,5 +11,6 @@ export const routes: Routes = [
   { path: 'registro', component: UsuariosFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'vacantes', component: VacantesListComponent },
-  { path: '**', redirectTo: 'home' },
+  { path: 'solicitudes', component: SolicitudesListComponent},
+  { path: '**', redirectTo: 'home' }
 ];

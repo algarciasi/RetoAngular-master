@@ -1,1 +1,17 @@
-<p>solicitudes-list works!</p>
+<h2>Listado de Solicitudes</h2>
+
+@if (solicitudes.length > 0) {
+  <ul>
+    @for (solicitud of solicitudes; track solicitud.idSolicitud) {
+      <li>
+        <strong>ID:</strong> {{ solicitud.idSolicitud }}<br>
+        <strong>Nombre:</strong> {{ solicitud.nombre }}<br>
+        <strong>Email:</strong> {{ solicitud.email }}<br>
+        <strong>Fecha Solicitud:</strong> {{ solicitud.fecha | date:'longDate' }}<br>
+        <strong>Vacante ID:</strong> {{ solicitud.idVacante }}<br>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay solicitudes disponibles.</p>
+}
