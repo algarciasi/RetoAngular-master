@@ -1,0 +1,14 @@
+.empresa-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .titulo {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 2rem;
+  }
+  
