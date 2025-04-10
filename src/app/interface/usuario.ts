@@ -5,7 +5,7 @@ export interface Usuario {
       apellidos: string;
       password: string;
       enabled: number;
-      fecha: string;
+      fecha: Date;
       rol: string;
     
 

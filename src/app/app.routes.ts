@@ -5,6 +5,7 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { VacantesListComponent } from './pages/vacantes-list/vacantes-list.component';
 import { SolicitudesListComponent } from './pages/solicitudes-list/solicitudes-list.component';
 import { HomeInicioComponent } from './pages/home-inicio/home-inicio.component';
+import { EmpresaFormComponent } from './pages/empresas-form/empresas-form.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'vacantes', component: VacantesListComponent },
   { path: 'solicitudes', component: SolicitudesListComponent},
+  { path: 'empresas/editar/:id', component: EmpresaFormComponent},
   { path: '**', redirectTo: 'home' }
 ];
