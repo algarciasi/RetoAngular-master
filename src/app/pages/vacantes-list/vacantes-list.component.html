@@ -1,1 +1,18 @@
-<p>vacantes-list works!</p>
+<h2>Listado de Vacantes</h2>
+
+@if (vacantes.length > 0) {
+  <ul>
+    @for (vacante of vacantes; track vacante.idVacante) {
+      <li>
+        <strong>{{ vacante.titulo }}</strong> - ID: {{ vacante.idVacante }}<br>
+        Descripción: {{ vacante.descripcion }}<br>
+        Categoría: {{ vacante.categoria?.nombre || 'Sin categoría' }}<br>
+        Tipo de contrato: {{ vacante.tipoContrato }}<br>
+        Empresa: {{ vacante.empresa?.nombre || 'Desconocida' }}<br>
+        Fecha Publicación: {{ vacante.fechaPublicacion | date:'longDate' }}<br>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay vacantes disponibles.</p>
+}

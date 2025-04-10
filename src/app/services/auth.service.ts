@@ -56,6 +56,7 @@ export class AuthService {
           // Guardar las credenciales en localStorage (¡CUIDADO CON LA SEGURIDAD!)
           localStorage.setItem('email', email);
           localStorage.setItem('password', password);
+          console.log('Credenciales guardadas en localStorage');
         })
       );
   }
