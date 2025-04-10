@@ -4,10 +4,12 @@ import { UsuariosFormComponent } from './pages/usuarios-form/usuarios-form.compo
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { VacantesListComponent } from './pages/vacantes-list/vacantes-list.component';
 import { SolicitudesListComponent } from './pages/solicitudes-list/solicitudes-list.component';
+import { HomeInicioComponent } from './pages/home-inicio/home-inicio.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: EmpresasListComponent },
+  { path: 'home', component: HomeInicioComponent },
+  { path: 'admon', component: EmpresasListComponent },
   { path: 'registro', component: UsuariosFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'vacantes', component: VacantesListComponent },

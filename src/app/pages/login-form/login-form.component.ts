@@ -47,7 +47,7 @@ export class LoginFormComponent {
           // Redirigir según rol
           switch (usuario.rol) {
             case 'ADMON':
-              this.router.navigate(['/home']);
+              this.router.navigate(['/admon']);
               break;
             case 'CLIENTE':
               this.router.navigate(['/vacantes']);
