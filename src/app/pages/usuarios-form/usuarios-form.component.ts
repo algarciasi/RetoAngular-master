@@ -24,6 +24,7 @@ export class UsuariosFormComponent {
   usuariosForm : FormGroup;
   tipo: string = "Insertar";
   miUsuario: Usuario | null = null;
+  volverPath: string;
   
   constructor() {
     this.usuariosForm = new FormGroup({
@@ -43,6 +44,8 @@ export class UsuariosFormComponent {
   
     this.usuariosForm.get('rol')?.setValue(rol);
     this.usuariosForm.get('rol')?.disable(); // seguir deshabilitado para seguridad visual
+
+    this.volverPath = esAdmon ? '/admon' : '/home'; // si es ADMON vuelve a la pagina /admon sino al /home
   }
 
   ngOnInit(): void {
@@ -57,7 +60,7 @@ export class UsuariosFormComponent {
     let fechaActual = new Date();
     let fechaFormateada = fechaActual.toISOString().split('T')[0];
   
-    // ⚠️ getRawValue porque el campo 'rol' está deshabilitado
+    // getRawValue porque el campo 'rol' está deshabilitado
     let nuevoUsuario: Usuario = {
       ...this.usuariosForm.getRawValue(),
       fecha: fechaFormateada
