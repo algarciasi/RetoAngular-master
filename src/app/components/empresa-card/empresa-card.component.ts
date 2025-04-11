@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Empresa } from '../../interface/empresa';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { EmpresaService } from '../../services/empresa.service';
 
 @Component({
   selector: 'app-empresa-card',
@@ -14,7 +15,8 @@ export class EmpresaCardComponent {
 
   @Input() miEmpresa!: Empresa;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private empresaService: EmpresaService) {}
 
    editarEmpresa() {
     this.router.navigate([`/empresas/editar/${this.miEmpresa.idEmpresa}`]);
@@ -23,7 +25,17 @@ export class EmpresaCardComponent {
   eliminarEmpresa() {
     const confirmar = confirm(`¿Seguro que deseas eliminar a ${this.miEmpresa.nombre}?`);
     if (confirmar) {
-      this.router.navigate([`/empresas/eliminar/${this.miEmpresa.idEmpresa}`]);
+      this.empresaService.eliminarEmpresa(this.miEmpresa.idEmpresa).subscribe({
+        next: () => {
+          alert('Empresa eliminada correctamente.');
+          // Recarga la vista o redirige
+          window.location.reload();
+        },
+        error: (err) => {
+          alert('Error al eliminar la empresa.');
+          console.error(err);
+        },
+      });
     }
   }
 
