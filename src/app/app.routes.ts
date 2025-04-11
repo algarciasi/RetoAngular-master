@@ -7,6 +7,7 @@ import { SolicitudesListComponent } from './pages/solicitudes-list/solicitudes-l
 import { HomeInicioComponent } from './pages/home-inicio/home-inicio.component';
 import { EmpresaFormComponent } from './pages/empresas-form/empresas-form.component';
 import { EmpresaDetalleComponent } from './components/empresa-detalle/empresa-detalle.component';
+import { EmpresaNuevaComponent } from './components/empresa-nueva/empresa-nueva.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'solicitudes', component: SolicitudesListComponent},
   { path: 'empresas/editar/:id', component: EmpresaFormComponent},
   { path: 'empresa/:id', component: EmpresaDetalleComponent },
+  { path: 'empresas/nueva', component: EmpresaNuevaComponent },
   { path: '**', redirectTo: 'home' }
 ];

@@ -11,7 +11,8 @@ export class AuthService {
   private _usuario = signal<Usuario | null>(null);
 
   readonly usuario = computed(() => this._usuario());
-  isLoggedIn = computed(() => this._usuario() !== null);
+  readonly isLoggedIn = computed(() => this._usuario() !== null);
+  readonly isAdmin = computed(() => this._usuario()?.rol === 'ADMON');
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -52,7 +53,11 @@ export class AuthService {
       .pipe(
         tap((response) => {
           console.log('Login exitoso:', response);
-          this._usuario.set({ email: email } as Usuario);
+          this._usuario.set({
+            email: response.username,
+            rol: response.rol,
+            nombre: response.nombre // si lo tienes disponible
+          } as Usuario);
           // Guardar las credenciales en localStorage (¡CUIDADO CON LA SEGURIDAD!)
           localStorage.setItem('email', email);
           localStorage.setItem('password', password);

@@ -1,36 +1,45 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['/']">Reto Empleo</a>
-  
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">Reto Empleo</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Inicio</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/registro']" routerLinkActive="active">Registro</a>
+        </li>
+
+        @if (isLoggedIn()) {
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Inicio</a>
+            <a class="nav-link disabled">
+              Bienvenido, {{ usuario()?.nombre }} (Usuario: {{ usuario()?.email }} {{ usuario()?.rol }})
+            </a>
           </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/registro']" routerLinkActive="active">Registro</a>
-          </li>
-  
-          @if (isLoggedIn()) {
+
+          <!-- 🔥 Botón "Alta Empresa" SOLO para ADMIN -->
+          @if (usuario()?.rol === 'ADMON') {
             <li class="nav-item">
-              <a class="nav-link disabled">Bienvenido, {{ usuario()?.nombre }} (ID: {{ usuario()?.email }})</a>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-outline-light ms-2" (click)="logout()">Logout</button>
-            </li>
-          } @else {
-            <li class="nav-item">
-              <a class="btn btn-outline-light ms-2" [routerLink]="['/login']">Login</a>
+              <a class="btn btn-success ms-2" [routerLink]="['/empresas/nueva']">+ Alta Empresa</a>
             </li>
           }
-        </ul>
-      </div>
+
+          <li class="nav-item">
+            <button class="btn btn-outline-light ms-2" (click)="logout()">Logout</button>
+          </li>
+        } @else {
+          <li class="nav-item">
+            <a class="btn btn-outline-light ms-2" [routerLink]="['/login']">Login</a>
+          </li>
+        }
+      </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>
