@@ -18,6 +18,11 @@ export class UsuarioService {
     return this.httpClient.post<Usuario>(`${this.baseUrl}/registro`, usuario);
   }
 
+  registroAdminWithObservable(usuario: Usuario): Observable<Usuario> {
+    return this.httpClient.post<Usuario>(`${this.baseUrl}/registro-admon`, usuario);
+  }
+  
+
   todosUsuariosWithObservable(): Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(`${this.baseUrl}/todos`);
   }

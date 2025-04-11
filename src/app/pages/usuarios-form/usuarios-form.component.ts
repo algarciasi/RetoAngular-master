@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../interface/usuario';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-usuarios-form',
@@ -16,6 +18,8 @@ export class UsuariosFormComponent {
   router = inject(Router);
   usuariosService = inject(UsuarioService);
   activatedRoute = inject(ActivatedRoute);
+  authService = inject(AuthService);
+
 
   usuariosForm : FormGroup;
   tipo: string = "Insertar";
@@ -27,13 +31,21 @@ export class UsuariosFormComponent {
       apellidos: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
-      rol: new FormControl({ value: 'CLIENTE', disabled: true }, [Validators.required]),
+      rol: new FormControl('', [Validators.required]), // inicializa vacío
       enabled: new FormControl({ value: 1, disabled: true })
     });
+  
+    // Verificamos si es un ADMON logueado
+    const user = this.authService.usuario();
+    const esAdmon = user && user.rol === 'ADMON';
+  
+    const rol = esAdmon ? 'ADMON' : 'CLIENTE';
+  
+    this.usuariosForm.get('rol')?.setValue(rol);
+    this.usuariosForm.get('rol')?.disable(); // seguir deshabilitado para seguridad visual
   }
 
   ngOnInit(): void {
-    // cargar el usuario y modificar el formulario
   }
 
   getDataForm(): void {
@@ -41,16 +53,24 @@ export class UsuariosFormComponent {
       alert('Por favor, completa todos los campos correctamente.');
       return;
     }
-
+  
     let fechaActual = new Date();
     let fechaFormateada = fechaActual.toISOString().split('T')[0];
-
+  
+    // ⚠️ getRawValue porque el campo 'rol' está deshabilitado
     let nuevoUsuario: Usuario = {
-      ...this.usuariosForm.getRawValue(), // enviar al back con valores fijos y visibles
+      ...this.usuariosForm.getRawValue(),
       fecha: fechaFormateada
     };
-
-    this.usuariosService.registroUsuarioWithObservable(nuevoUsuario).subscribe({
+  
+    const user = this.authService.usuario(); // Usuario logueado
+    const esAdmon = user && user.rol === 'ADMON';
+  
+    const registro$ = esAdmon
+      ? this.usuariosService.registroAdminWithObservable(nuevoUsuario) // Usa el endpoint especial
+      : this.usuariosService.registroUsuarioWithObservable(nuevoUsuario); // Usa el normal
+  
+    registro$.subscribe({
       next: (response: Usuario) => {
         alert('Usuario creado correctamente: ' + response.nombre);
         this.router.navigate(['/home']);
@@ -61,6 +81,7 @@ export class UsuariosFormComponent {
       }
     });
   }
+  
 
 
 
