@@ -1,8 +1,6 @@
 <div class="card shadow p-3 mb-3 w-100 text-center">
   <img
-    [src]="
-      'https://placehold.co/300x200?text=' + (miEmpresa.nombre | slice : 0 : 20)
-    "
+    [src]="'https://placehold.co/300x200?text=' + (miEmpresa.nombre | slice : 0 : 20)"
     class="card-img-top"
     alt="Imagen empresa"
   />
@@ -11,17 +9,17 @@
     <h5 class="card-title">{{ miEmpresa.nombre }}</h5>
   </div>
 
-  <div class="card-footer d-flex justify-content-between">
-    <button class="btn btn-warning btn-sm" (click)="editarEmpresa()">
+  <div class="card-footer d-flex gap-2">
+    <button class="btn btn-warning btn-sm flex-fill" (click)="editarEmpresa()">
       Editar
     </button>
     <button
-      class="btn btn-primary btn-sm mb-2"
+      class="btn btn-primary btn-sm flex-fill"
       [routerLink]="['/empresa', miEmpresa.idEmpresa]"
     >
       Detalles
     </button>
-    <button class="btn btn-danger btn-sm" (click)="eliminarEmpresa()">
+    <button class="btn btn-danger btn-sm flex-fill" (click)="eliminarEmpresa()">
       Eliminar
     </button>
   </div>
