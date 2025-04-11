@@ -52,6 +52,40 @@ export class EmpresaService {
     });
   }
 
+  getDetalleIdWithObservables(id: number): Observable<Empresa> {
+    const email = localStorage.getItem('email');
+    const password = localStorage.getItem('password');
+  
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  
+    if (
+      email &&
+      password &&
+      typeof window !== 'undefined' &&
+      typeof window.btoa !== 'undefined'
+    ) {
+      headers = headers.set(
+        'Authorization',
+        'Basic ' + window.btoa(email + ':' + password)
+      );
+    } else {
+      console.error(
+        'No se encontraron las credenciales o btoa no está disponible.'
+      );
+      return new Observable((observer) =>
+        observer.error('No se encontraron las credenciales')
+      );
+    }
+  
+    return this.httpClient.get<Empresa>(`${this.baseUrl}/buscar/${id}`, {
+      headers: headers,
+    });
+  }
+  
+  
+
   /*getByIdWithObservable(_id: string): Observable<Empresa>{
     return this.httpClient.get<Empresa>(`${this.baseUrl}/${_id}`);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Empresa } from '../../interface/empresa';
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-empresas-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './empresas-form.component.html',
   styleUrl: './empresas-form.component.css'
 })
@@ -77,7 +77,4 @@ export class EmpresaFormComponent implements OnInit {
       });
   }
 
-  volver() {
-    this.router.navigate(['/admon']);
-  }
 }  

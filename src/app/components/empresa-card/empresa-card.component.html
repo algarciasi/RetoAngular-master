@@ -1,15 +1,28 @@
-<div class="card shadow p-3 mb-3 w-100">
-  <img src="https://placehold.co/300x200?text={{ miEmpresa.nombre | slice:0:20 }}" class="card-img-top" alt="Imagen empresa">
+<div class="card shadow p-3 mb-3 w-100 text-center">
+  <img
+    [src]="
+      'https://placehold.co/300x200?text=' + (miEmpresa.nombre | slice : 0 : 20)
+    "
+    class="card-img-top"
+    alt="Imagen empresa"
+  />
 
   <div class="card-body">
     <h5 class="card-title">{{ miEmpresa.nombre }}</h5>
-    <p><strong>CIF:</strong> {{ miEmpresa.cif }}</p>
-    <p><strong>Dirección:</strong> {{ miEmpresa.direccion }}</p>
-    <p><strong>País:</strong> {{ miEmpresa.pais }}</p>
-  </div>
-  <div class="card-footer">
-    <button class="btn btn-warning btn-sm" (click)="editarEmpresa()">Editar</button>
-    <button class="btn btn-danger btn-sm" (click)="eliminarEmpresa()">Eliminar</button>
   </div>
 
+  <div class="card-footer d-flex justify-content-between">
+    <button class="btn btn-warning btn-sm" (click)="editarEmpresa()">
+      Editar
+    </button>
+    <button
+      class="btn btn-primary btn-sm mb-2"
+      [routerLink]="['/empresa', miEmpresa.idEmpresa]"
+    >
+      Detalles
+    </button>
+    <button class="btn btn-danger btn-sm" (click)="eliminarEmpresa()">
+      Eliminar
+    </button>
+  </div>
 </div>

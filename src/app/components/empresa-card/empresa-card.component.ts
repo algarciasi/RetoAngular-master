@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Empresa } from '../../interface/empresa';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-empresa-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './empresa-card.component.html',
   styleUrl: './empresa-card.component.css'
 })
