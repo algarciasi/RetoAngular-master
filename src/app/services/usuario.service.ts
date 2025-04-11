@@ -17,7 +17,14 @@ export class UsuarioService {
   registroUsuarioWithObservable(usuario: Usuario): Observable<Usuario> {
     return this.httpClient.post<Usuario>(`${this.baseUrl}/registro`, usuario);
   }
+
+  todosUsuariosWithObservable(): Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(`${this.baseUrl}/todos`);
+  }
   
+  bajaUsuarioWithObservable(email: string): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/baja/${email}`);
+  }
 
   
 }

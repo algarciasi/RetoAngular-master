@@ -1,0 +1,28 @@
+<section class="container mt-5">
+    <h3>Gestión de Usuarios</h3>
+    <hr>
+  
+    <table class="table table-striped mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usuarios">
+          <td>{{ user.email }}</td>
+          <td>{{ user.nombre }}</td>
+          <td>{{ user.apellidos }}</td>
+          <td>{{ user.rol }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(user.email)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  
