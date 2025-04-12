@@ -21,11 +21,24 @@ export class CategoriasListComponent {
     });
   }
 
-  eliminarCategoria(id: number) {
-    if (confirm('¿Seguro de que quieres eliminar esta categoría?')) {
-      this.categoriaService.eliminar(id).subscribe(() => {
-        this.categorias = this.categorias.filter(c => c.id !== id);
+  eliminarCategoria(id: number): void {
+    if (confirm('¿Estás seguro que deseas eliminar esta categoría?')) {
+      this.categoriaService.eliminar(id).subscribe({
+        next: () => {
+          // Eliminamos de la lista actual sin recargar
+          this.categorias = this.categorias.filter(c => c.id !== id);
+          alert('Categoría eliminada correctamente.');
+        },
+        error: (err) => {
+          if (err.status === 409) {
+            alert('No se puede eliminar: la categoría tiene vacantes asociadas.');
+          } else {
+            alert('Error inesperado al eliminar la categoría.');
+            console.error(err);
+          }
+        }
       });
     }
   }
+  
 }
