@@ -1,18 +1,39 @@
-<h2>Listado de Vacantes</h2>
+<section class="container mt-5">
+  <h3>Listado de Vacantes</h3>
+  <hr />
 
-@if (vacantes.length > 0) {
-  <ul>
-    @for (vacante of vacantes; track vacante.idVacante) {
-      <li>
-        <strong>{{ vacante.titulo }}</strong> - ID: {{ vacante.idVacante }}<br>
-        Descripción: {{ vacante.descripcion }}<br>
-        Categoría: {{ vacante.categoria?.nombre || 'Sin categoría' }}<br>
-        Tipo de contrato: {{ vacante.tipoContrato }}<br>
-        Empresa: {{ vacante.empresa?.nombre || 'Desconocida' }}<br>
-        Fecha Publicación: {{ vacante.fechaPublicacion | date:'longDate' }}<br>
-      </li>
-    }
-  </ul>
-} @else {
-  <p>No hay vacantes disponibles.</p>
-}
+  <table class="table table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Fecha</th>
+        <th>Estado</th>
+        <th>Empresa</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (vacante of vacantes; track vacante.idVacante) {
+        <tr>
+          <td>{{ vacante.idVacante }}</td>
+          <td>{{ vacante.nombre }}</td>
+          <td>{{ vacante.descripcion }}</td>
+          <td>{{ vacante.fecha | date: 'mediumDate' }}</td> 
+          <td>{{ vacante.estatus }}</td>
+          <td>{{ vacante.nombreEmpresa || 'Sin empresa' }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarVacante(vacante.idVacante)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <button class="btn btn-secondary me-2" [routerLink]="['/solicitudes']" type="button">
+    ← Volver
+  </button>
+</section>

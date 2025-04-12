@@ -1,30 +1,47 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
-
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { VacantesService } from '../../services/vacante.service';
+import { Vacante } from '../../interface/vacante';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-vacantes-list',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './vacantes-list.component.html',
   styleUrl: './vacantes-list.component.css'
 })
 export class VacantesListComponent implements OnInit {
 
-  public vacantes: any[] = [];
-
-  constructor(private http: HttpClient) {}
+  private vacantesService = inject(VacantesService);
+  vacantes: Vacante[] = [];
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8086/vacantes/todas')
-      .subscribe({
-        next: data => {
-          this.vacantes = data;
-          console.log('Vacantes cargadas:', this.vacantes);
-        },
-        error: err => {
-          console.error('Error cargando vacantes', err);
-        }
-      });
+    this.vacantesService.obtenerTodas().subscribe({
+      next: (res) => (this.vacantes = res),
+      error: (err) => console.error('Error al obtener vacantes:', err)
+    });
   }
+
+  /*verDetalle(id: number) {
+    console.log('Ver detalle de vacante ID:', id);
+  }*/
+
+  eliminarVacante(id: number) {
+    const confirmar = confirm(`¿Seguro que deseas eliminar la vacante con ID ${id}?`);
+    if (!confirmar) return;
+
+    this.vacantesService.cancelarVacante(id).subscribe({
+      next: () => {
+        alert('Vacante eliminada correctamente');
+        this.vacantes = this.vacantes.filter(v => v.idVacante !== id); // elimina de la lista local
+      },
+      error: (err) => {
+        console.error('Error al eliminar vacante:', err);
+        alert('No se pudo eliminar la vacante');
+      }
+    });
+  }
+
+  
 }

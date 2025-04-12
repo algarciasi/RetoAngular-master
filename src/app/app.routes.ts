@@ -20,7 +20,7 @@ export const routes: Routes = [
   { path: 'admon', component: EmpresasListComponent },
   { path: 'registro', component: UsuariosFormComponent },
   { path: 'login', component: LoginFormComponent },
-  { path: 'vacantes', component: VacantesListComponent },
+  { path: 'vacantes/todas', component: VacantesListComponent },
   { path: 'solicitudes', component: SolicitudesListComponent},
   { path: 'empresas/editar/:id', component: EmpresaFormComponent},
   { path: 'empresa/:id', component: EmpresaDetalleComponent },

@@ -1,6 +1,8 @@
 import { Categoria } from "./categoria";
 import { Empresa } from "./empresa";
 
+
+
 export interface Vacante {
   idVacante: number;
   nombre: string;
@@ -11,6 +13,7 @@ export interface Vacante {
   destacado: number; // Enum ordinal (0 o 1)
   imagen: string;
   detalles: string;
+  nombreEmpresa: string;
   categoria?: Categoria;
   empresa?: Empresa;
 }

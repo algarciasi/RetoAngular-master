@@ -24,7 +24,7 @@
             </a>
           </li>
 
-          <!-- Botón "Alta Empresa" SOLO para ADMIN -->
+          <!-- Botón "Alta Empresa" ROL ADMON -->
           @if (usuario()?.rol === 'ADMON') {
             <li class="nav-item">
               <a class="btn btn-success ms-2" [routerLink]="['/empresas/nueva']">Alta Empresa</a>
@@ -38,6 +38,15 @@
               <button class="btn btn-danger ms-2" [routerLink]="['/usuarios']">
                 Baja Usuario
               </button>
+            </li>
+          }
+
+          <!-- Botón "Vacantes" ROL EMPRESA -->
+          @if (usuario()?.rol === 'EMPRESA') {
+            <li class="nav-item">
+              <a class="btn btn-info ms-2" [routerLink]="['/vacantes/todas']">
+                Vacantes
+              </a>
             </li>
           }
 
