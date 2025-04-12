@@ -12,6 +12,7 @@ import { UsuariosListComponent } from './pages/usuarios-list/usuarios-list.compo
 import { CategoriasListComponent } from './pages/categorias-list/categorias-list.component';
 import { CategoriasFormComponent } from './pages/categorias-form/categorias-form.component';
 import { AltaCategoriaComponent } from './pages/categorias-alta-form/categorias-alta-form.component';
+import { SolicitudCardComponent } from './components/solicitud-card/solicitud-card.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -28,5 +29,7 @@ export const routes: Routes = [
   { path: 'categorias/lista', component: CategoriasListComponent },
   { path: 'categorias/editar/:id', component: CategoriasFormComponent },
   { path: 'categorias/nueva', component: AltaCategoriaComponent },
+  { path: 'solicitudes/todas', component: SolicitudCardComponent },
+  { path: 'solicitudes/nueva', component: SolicitudesListComponent },
   { path: '**', redirectTo: 'home' }
 ];

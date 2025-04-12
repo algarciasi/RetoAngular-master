@@ -1,17 +1,11 @@
-<h2>Listado de Solicitudes</h2>
+<h2 class="text-center mb-4">Listado de Solicitudes</h2>
 
-@if (solicitudes.length > 0) {
-  <ul>
+<div class="container">
+  <div class="row g-3 justify-content-center">
     @for (solicitud of solicitudes; track solicitud.idSolicitud) {
-      <li>
-        <strong>ID:</strong> {{ solicitud.idSolicitud }}<br>
-        <strong>Nombre:</strong> {{ solicitud.nombre }}<br>
-        <strong>Email:</strong> {{ solicitud.email }}<br>
-        <strong>Fecha Solicitud:</strong> {{ solicitud.fecha | date:'longDate' }}<br>
-        <strong>Vacante ID:</strong> {{ solicitud.idVacante }}<br>
-      </li>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+        <app-solicitud-card [solicitud]="solicitud" class="w-100"></app-solicitud-card>
+      </div>
     }
-  </ul>
-} @else {
-  <p>No hay solicitudes disponibles.</p>
-}
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="card shadow p-3 mb-3 w-100 text-start">
+
+  <div class="card-body">
+    <h5 class="card-title">Solicitud #{{ solicitud.idSolicitud }}</h5>
+
+    <p class="card-text mb-1">
+      📅 <strong>Fecha:</strong> {{ solicitud.fecha | date: 'longDate' }}
+    </p>
+
+    <p class="card-text mb-1">
+      📧 <strong>Email:</strong> {{ solicitud.emailUsuario || 'Sin correo' }}
+    </p>
+
+    <p class="card-text mb-1">
+      💼 <strong>Vacante:</strong> {{ solicitud.nombreVacante || 'Sin título' }}
+    </p>
+
+    <p class="card-text mb-1">
+      💬 <strong>Comentarios:</strong> {{ solicitud.comentarios || '-' }}
+    </p>
+
+    <p class="card-text mb-1">
+      📎 <strong>Currículum:</strong>
+      <a [href]="'/assets/cv/' + solicitud.curriculum" target="_blank">
+        Descargar CV
+      </a>
+    </p>
+  </div>
+
+  <div class="card-footer d-flex justify-content-end">
+    <button class="btn btn-outline-primary btn-sm" (click)="verDetalle()">
+      Ver Detalle
+    </button>
+  </div>
+</div>

@@ -1,26 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { SolicitudesService } from '../../services/solicitudes.service';
+import { Solicitud } from '../../interface/solicitud';
+import { SolicitudCardComponent } from '../../components/solicitud-card/solicitud-card.component';
+
 
 @Component({
   selector: 'app-solicitudes-list',
-  imports: [CommonModule ],
+  standalone:true,
+  imports: [CommonModule, SolicitudCardComponent],
   templateUrl: './solicitudes-list.component.html',
   styleUrl: './solicitudes-list.component.css'
 })
-export class SolicitudesListComponent {
-  solicitudes: any[] = [];
-
-  constructor(private http: HttpClient) {}
+export class SolicitudesListComponent implements OnInit {
+  private solicitudesService = inject(SolicitudesService);
+  solicitudes: Solicitud[] = [];
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8086/solicitudes/todas').subscribe({
-      next: (data) => {
-        this.solicitudes = data;
-        console.log('Solicitudes cargadas:', data);
-      },
-      error: (error) => {
-        console.error('Error al cargar solicitudes', error);
+    this.solicitudesService.obtenerTodas().subscribe({
+      next: (sols) => this.solicitudes = sols,
+      error: (err) => {
+        console.error('Error al cargar solicitudes', err);
       }
     });
   }
