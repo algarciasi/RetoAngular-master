@@ -9,6 +9,8 @@ import { EmpresaFormComponent } from './pages/empresas-form/empresas-form.compon
 import { EmpresaDetalleComponent } from './components/empresa-detalle/empresa-detalle.component';
 import { EmpresaNuevaComponent } from './components/empresa-nueva/empresa-nueva.component';
 import { UsuariosListComponent } from './pages/usuarios-list/usuarios-list.component';
+import { CategoriasListComponent } from './pages/categorias-list/categorias-list.component';
+import { CategoriasFormComponent } from './pages/categorias-form/categorias-form.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -22,5 +24,7 @@ export const routes: Routes = [
   { path: 'empresa/:id', component: EmpresaDetalleComponent },
   { path: 'empresas/nueva', component: EmpresaNuevaComponent },
   { path: 'usuarios', component: UsuariosListComponent },
+  { path: 'categorias/lista', component: CategoriasListComponent },
+  { path: 'categorias/editar/:id', component: CategoriasFormComponent },
   { path: '**', redirectTo: 'home' }
 ];
