@@ -18,54 +18,62 @@
         </li>
 
         @if (isLoggedIn()) {
-          <li class="nav-item">
-            <a class="nav-link disabled">
-              Bienvenido, {{ usuario()?.nombre }} (Usuario: {{ usuario()?.email }} {{ usuario()?.rol }})
-            </a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">
+            Bienvenido, {{ usuario()?.nombre }} (Usuario: {{ usuario()?.email }} {{ usuario()?.rol }})
+          </a>
+        </li>
 
-          <!-- Botón "Alta Empresa" ROL ADMON -->
-          @if (usuario()?.rol === 'ADMON') {
-            <li class="nav-item">
-              <a class="btn btn-success ms-2" [routerLink]="['/empresas/nueva']">Alta Empresa</a>
-            </li>
+        <!-- Botón "Alta Empresa" ROL ADMON -->
+        @if (usuario()?.rol === 'ADMON') {
+        <li class="nav-item">
+          <a class="btn btn-success ms-2" [routerLink]="['/empresas/nueva']">Alta Empresa</a>
+        </li>
 
-            <li class="nav-item">
-              <a class="btn btn-warning ms-2" [routerLink]="['/categorias/lista']">Alta Categoría</a>
-            </li>
+        <li class="nav-item">
+          <a class="btn btn-warning ms-2" [routerLink]="['/categorias/lista']">Alta Categoría</a>
+        </li>
 
-            <li class="nav-item">
-              <button class="btn btn-danger ms-2" [routerLink]="['/usuarios']">
-                Baja Usuario
-              </button>
-            </li>
-          }
+        <li class="nav-item">
+          <button class="btn btn-danger ms-2" [routerLink]="['/usuarios']">
+            Baja Usuario
+          </button>
+        </li>
+        }
 
-          <!-- Botón "Vacantes" ROL EMPRESA -->
-          @if (usuario()?.rol === 'EMPRESA') {
-            <li class="nav-item">
-              <a class="btn btn-info ms-2" [routerLink]="['/vacantes/todas']">
-                Vacantes
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="btn btn-secondary ms-2"
-                [routerLink]="['/empresas/editar', usuario()?.idEmpresa]">
-                Editar Empresa
-              </a>
-            </li>
-            
+        <!-- Botón "Vacantes" ROL EMPRESA -->
+        @if (usuario()?.rol === 'EMPRESA') {
+        <li class="nav-item">
+          <a class="btn btn-info ms-2" [routerLink]="['/vacantes/todas']">
+            Vacantes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-secondary ms-2" [routerLink]="['/empresas/editar', usuario()?.idEmpresa]">
+            Editar Empresa
+          </a>
+        </li>
 
-          }
 
-          <li class="nav-item">
-            <button class="btn btn-outline-light ms-2" (click)="logout()">Logout</button>
-          </li>
+        }
+
+        <!-- Botón "Solicitudes" ROL CLIENTE -->
+        @if (usuario()?.rol === 'CLIENTE') {
+        <li class="nav-item">
+          <a class="btn btn-outline-info ms-2" [routerLink]="['/solicitudes/usuario']">
+            Solicitudes
+          </a>
+        </li>
+        }
+
+
+        <li class="nav-item">
+          <button class="btn btn-outline-light ms-2" (click)="logout()">Logout</button>
+        </li>
         } @else {
-          <li class="nav-item">
-            <a class="btn btn-outline-light ms-2" [routerLink]="['/login']">Login</a>
-          </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light ms-2" [routerLink]="['/login']">Login</a>
+        </li>
         }
       </ul>
     </div>

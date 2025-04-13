@@ -16,6 +16,7 @@ import { SolicitudCardComponent } from './components/solicitud-card/solicitud-ca
 import { VacantesFormComponent } from './pages/vacante-nueva-form/vacante-nueva-form.component';
 import { SolicitudFormComponent } from './pages/solicitud-form/solicitud-form.component';
 import { VacantesFiltroComponent } from './pages/vacantes-filtro/vacantes-filtro.component';
+import { SolicitudesUsuarioComponent } from './pages/solicitudes-usuario/solicitudes-usuario.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -37,5 +38,6 @@ export const routes: Routes = [
   { path: 'solicitudes/nueva', component: SolicitudesListComponent },
   { path: 'solicitudes/nueva/:id', component: SolicitudFormComponent },
   { path: 'vacantes/buscar', component: VacantesFiltroComponent }, 
+  { path: 'solicitudes/usuario', component: SolicitudesUsuarioComponent }, 
   { path: '**', redirectTo: 'home' }
 ];

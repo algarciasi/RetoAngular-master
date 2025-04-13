@@ -20,4 +20,9 @@ export class SolicitudesService {
   crear(solicitud: SolicitudNuevaDto): Observable<Solicitud> {
     return this.http.post<Solicitud>(`${this.apiUrl}/nueva`, solicitud);
   }
+
+   // GET /solicitudes/usuario?email=...
+   obtenerPorEmail(email: string): Observable<Solicitud[]> {
+    return this.http.get<Solicitud[]>(`${this.apiUrl}/usuario?email=${email}`);
+  }
 }

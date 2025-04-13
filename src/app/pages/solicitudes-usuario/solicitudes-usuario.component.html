@@ -1,0 +1,20 @@
+<h2 class="text-center my-4">Mis Solicitudes</h2>
+
+<div class="container">
+  <div class="row g-3 justify-content-center">
+    @for (solicitud of solicitudes; track solicitud.idSolicitud) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+        <app-solicitud-card [solicitud]="solicitud" class="w-100"></app-solicitud-card>
+      </div>
+    }
+
+    @if (solicitudes.length === 0) {
+      <div class="col-12 text-center mt-4">
+        <p class="alert alert-info">Todavía no has realizado ninguna solicitud.</p>
+      </div>
+    }
+  </div>
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-secondary me-2" [routerLink]="['/vacantes/todas']" type="button">← Volver</button>
+  </div>
+</div>
