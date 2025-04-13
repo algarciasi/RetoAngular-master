@@ -78,7 +78,7 @@ export class VacantesFiltroComponent {
     }
     
 
-  vaciarFiltro(): void {
+  /*vaciarFiltro(): void {
     this.filtros = {
       nombre: '',
       categoria: '',
@@ -87,5 +87,17 @@ export class VacantesFiltroComponent {
       salarioMin: 16576,
     };
     this.filtrar.emit(this.filtros);
-  }
+  }*/
+
+    vaciarFiltro(): void {
+      this.filtros = {
+        nombre: '',
+        categoria: '',
+        pais: '',
+        fechaDesde: '',
+        salarioMin: 16576,
+      };
+      this.router.navigate(['/vacantes/todas']);
+    }
+    
 }

@@ -19,12 +19,12 @@ export class VacantesListComponent implements OnInit {
   vacantes: Vacante[] = [];
 
   constructor(public authService: AuthService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute) { }
 
 
-  ngOnInit(): void {
+  /*ngOnInit(): void {
     this.vacantesService.obtenerTodas().subscribe({
-      next: (res) =>{
+      next: (res) => {
         if (this.authService.isCliente()) {
           this.vacantes = res.filter(v => v.estatus === 'CREADA');
         } else {
@@ -33,9 +33,46 @@ export class VacantesListComponent implements OnInit {
       },
       error: (err) => console.error('Error al obtener vacantes:', err)
     });
-  }
+  }*/
 
- 
+    ngOnInit(): void {
+      this.route.queryParams.subscribe(params => {
+        const tieneFiltros =
+          params['nombre'] || params['categoria'] || params['pais'] || params['fechaDesde'] || params['salarioMin'];
+    
+        if (tieneFiltros) {
+          const filtros = {
+            nombre: params['nombre'] || '',
+            categoria: params['categoria'] || '',
+            pais: params['pais'] || '',
+            fecha: params['fechaDesde'] || '',
+            salario: params['salarioMin'] ? parseFloat(params['salarioMin']) : undefined
+          };
+    
+          this.vacantesService.buscarVacantes(filtros).subscribe({
+            next: (res) => {
+              this.vacantes = this.authService.isCliente()
+                ? res.filter(v => v.estatus === 'CREADA')
+                : res;
+            },
+            error: (err) => console.error('Error al filtrar vacantes:', err)
+          });
+        } else {
+          this.vacantesService.obtenerTodas().subscribe({
+            next: (res) => {
+              this.vacantes = this.authService.isCliente()
+                ? res.filter(v => v.estatus === 'CREADA')
+                : res;
+            },
+            error: (err) => console.error('Error al obtener vacantes:', err)
+          });
+        }
+      });
+    }
+    
+
+
+
   eliminarVacante(id: number) {
     const confirmar = confirm(`¿Seguro que deseas eliminar la vacante con ID ${id}?`);
     if (!confirmar) return;
@@ -53,5 +90,5 @@ export class VacantesListComponent implements OnInit {
   }
 
 
-  
+
 }
