@@ -14,6 +14,8 @@ export interface Vacante {
   imagen: string;
   detalles: string;
   nombreEmpresa: string;
+  idEmpresa: number;
+  idCategoria: number;
   categoria?: Categoria;
   empresa?: Empresa;
 }

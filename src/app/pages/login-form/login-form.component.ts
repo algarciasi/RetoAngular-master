@@ -50,7 +50,7 @@ export class LoginFormComponent {
               this.router.navigate(['/admon']);
               break;
             case 'CLIENTE':
-              this.router.navigate(['/vacantes']);
+              this.router.navigate(['/vacantes/todas']);
               break;
             case 'EMPRESA':
               this.router.navigate(['/solicitudes']);

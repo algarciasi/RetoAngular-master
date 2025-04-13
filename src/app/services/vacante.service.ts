@@ -18,5 +18,10 @@ export class VacantesService {
     return this.http.delete(`${this.baseUrl}/cancelar/${id}`);
   }
 
+  crearVacante(vacante: Vacante): Observable<any> {
+    return this.http.post(`${this.baseUrl}/nueva`, vacante);
+  }
+  
+
 
 }

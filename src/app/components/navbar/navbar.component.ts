@@ -18,6 +18,8 @@ export class NavbarComponent {
     private usuarioService: UsuarioService) {
     this.usuario = this.authService.usuario;
     this.isLoggedIn = this.authService.isLoggedIn;
+    console.log('ID de empresa:', this.authService.idEmpresa());
+
   }
 
   logout() {

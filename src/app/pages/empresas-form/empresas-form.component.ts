@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Empresa } from '../../interface/empresa';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-empresas-form',
@@ -33,14 +34,23 @@ export class EmpresaFormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService //13/04
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+
+    console.log('[EDITAR EMPRESA] ID de la ruta:', id); 
+    if (!id) {
+      console.warn('No se ha recibido ID de empresa en la ruta');
+      return;
+    }
+
     this.http.get<Empresa>(`http://localhost:8086/empresas/buscar/${id}`)
       .subscribe(data => this.empresa = data);
   }
+
 
   guardarCambios(): void {
     const id = this.empresa.idEmpresa;

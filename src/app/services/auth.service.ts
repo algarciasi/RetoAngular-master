@@ -14,6 +14,13 @@ export class AuthService {
   readonly isLoggedIn = computed(() => this._usuario() !== null);
   readonly isAdmin = computed(() => this._usuario()?.rol === 'ADMON');
 
+  readonly isEmpresa = computed(() => this._usuario()?.rol === 'EMPRESA');
+  readonly idEmpresa = computed(() => this._usuario()?.idEmpresa ?? null);
+
+  readonly isCliente = computed(() => this._usuario()?.rol === 'CLIENTE');
+
+
+
   constructor(private http: HttpClient, private router: Router) {}
 
   login(usuario: Usuario) {
@@ -56,7 +63,8 @@ export class AuthService {
           this._usuario.set({
             email: response.username,
             rol: response.rol,
-            nombre: response.nombre // si lo tienes disponible
+            nombre: response.nombre, // si lo tienes disponible
+            idEmpresa: response.idEmpresa
           } as Usuario);
           // Guardar las credenciales en localStorage (¡CUIDADO CON LA SEGURIDAD!)
           localStorage.setItem('email', email);

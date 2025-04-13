@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { VacantesService } from '../../services/vacante.service';
 import { Vacante } from '../../interface/vacante';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-vacantes-list',
@@ -16,9 +17,18 @@ export class VacantesListComponent implements OnInit {
   private vacantesService = inject(VacantesService);
   vacantes: Vacante[] = [];
 
+  constructor(public authService: AuthService) {}
+
+
   ngOnInit(): void {
     this.vacantesService.obtenerTodas().subscribe({
-      next: (res) => (this.vacantes = res),
+      next: (res) =>{
+        if (this.authService.isCliente()) {
+          this.vacantes = res.filter(v => v.estatus === 'CREADA');
+        } else {
+          this.vacantes = res;
+        }
+      },
       error: (err) => console.error('Error al obtener vacantes:', err)
     });
   }

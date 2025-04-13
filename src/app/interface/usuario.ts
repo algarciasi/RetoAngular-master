@@ -7,6 +7,8 @@ export interface Usuario {
       enabled: number;
       fecha: Date;
       rol: string;
+
+      idEmpresa?: number;
     
 
 }
