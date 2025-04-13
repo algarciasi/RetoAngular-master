@@ -22,6 +22,23 @@ export class VacantesService {
     return this.http.post(`${this.baseUrl}/nueva`, vacante);
   }
   
-
+  buscarVacantes(filtros: {
+    nombre?: string;
+    categoria?: string;
+    pais?: string;
+    fecha?: string;
+    salario?: number;
+  }): Observable<Vacante[]> {
+    return this.http.get<Vacante[]>(`${this.baseUrl}/buscar`, {
+      params: {
+        ...(filtros.nombre && { nombre: filtros.nombre }),
+        ...(filtros.categoria && { categoria: filtros.categoria }),
+        ...(filtros.pais && { pais: filtros.pais }),
+        ...(filtros.fecha && { fecha: filtros.fecha }),
+        ...(filtros.salario != null && { salario: filtros.salario.toString() })
+      }
+    });
+  }
+  
 
 }

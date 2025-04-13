@@ -15,6 +15,7 @@ import { AltaCategoriaComponent } from './pages/categorias-alta-form/categorias-
 import { SolicitudCardComponent } from './components/solicitud-card/solicitud-card.component';
 import { VacantesFormComponent } from './pages/vacante-nueva-form/vacante-nueva-form.component';
 import { SolicitudFormComponent } from './pages/solicitud-form/solicitud-form.component';
+import { VacantesFiltroComponent } from './pages/vacantes-filtro/vacantes-filtro.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -35,5 +36,6 @@ export const routes: Routes = [
   { path: 'solicitudes/todas', component: SolicitudCardComponent },
   { path: 'solicitudes/nueva', component: SolicitudesListComponent },
   { path: 'solicitudes/nueva/:id', component: SolicitudFormComponent },
+  { path: 'vacantes/buscar', component: VacantesFiltroComponent },
   { path: '**', redirectTo: 'home' }
 ];
