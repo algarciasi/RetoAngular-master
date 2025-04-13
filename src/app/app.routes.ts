@@ -39,5 +39,6 @@ export const routes: Routes = [
   { path: 'solicitudes/nueva/:id', component: SolicitudFormComponent },
   { path: 'vacantes/buscar', component: VacantesFiltroComponent }, 
   { path: 'solicitudes/usuario', component: SolicitudesUsuarioComponent }, 
+  { path: 'solicitudes/cancelar/:id', component: SolicitudCardComponent },
   { path: '**', redirectTo: 'home' }
 ];

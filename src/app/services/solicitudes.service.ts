@@ -25,4 +25,12 @@ export class SolicitudesService {
    obtenerPorEmail(email: string): Observable<Solicitud[]> {
     return this.http.get<Solicitud[]>(`${this.apiUrl}/usuario?email=${email}`);
   }
+
+  // DELETE /usuarios/cancelar/{idSolicitud}
+  cancelarSolicitud(idSolicitud: number): Observable<string> {
+    return this.http.delete(`${this.apiUrl}/cancelar/${idSolicitud}`, {
+      responseType: 'text'
+    });
+  }
+
 }

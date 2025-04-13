@@ -31,5 +31,5 @@ export class UsuarioService {
     return this.httpClient.delete<void>(`${this.baseUrl}/baja/${email}`);
   }
 
-  
+   
 }
