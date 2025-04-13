@@ -98,7 +98,7 @@ export class VacantesFormComponent implements OnInit {
       console.log('🚀 Payload enviado al backend:', payload);
     
       this.vacantesService.crearVacante(payload).subscribe({
-        next: () => this.router.navigate(['/vacantes']),
+        next: () => this.router.navigate(['/solicitudes']),
         error: (err) => console.error('❌ Error al crear vacante:', err),
       });
     }
