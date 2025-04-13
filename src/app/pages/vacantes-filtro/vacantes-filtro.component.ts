@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Categoria } from '../../interface/categoria';
 import { CategoriaService } from '../../services/categoria.service';
 import { VacantesService } from '../../services/vacante.service';
@@ -32,7 +32,8 @@ export class VacantesFiltroComponent {
 
   constructor(
     private categoriaService: CategoriaService,
-    private vacantesService: VacantesService
+    private vacantesService: VacantesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -65,9 +66,17 @@ export class VacantesFiltroComponent {
     });
   }
 
-  filtro(): void {
+  /*filtro(): void {
     this.filtrar.emit(this.filtros);
-  }
+  }*/
+
+    filtro(): void {
+      // 👉 Redirige a vacantes/listado con filtros en la URL
+      this.router.navigate(['/vacantes/todas'], {
+        queryParams: this.filtros
+      });
+    }
+    
 
   vaciarFiltro(): void {
     this.filtros = {

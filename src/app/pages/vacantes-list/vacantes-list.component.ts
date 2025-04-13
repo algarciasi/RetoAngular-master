@@ -2,13 +2,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VacantesService } from '../../services/vacante.service';
 import { Vacante } from '../../interface/vacante';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { VacantesFiltroComponent } from "../vacantes-filtro/vacantes-filtro.component";
 
 @Component({
   selector: 'app-vacantes-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, VacantesFiltroComponent],
   templateUrl: './vacantes-list.component.html',
   styleUrl: './vacantes-list.component.css'
 })
@@ -17,7 +18,8 @@ export class VacantesListComponent implements OnInit {
   private vacantesService = inject(VacantesService);
   vacantes: Vacante[] = [];
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService,
+    private route: ActivatedRoute) {}
 
 
   ngOnInit(): void {
@@ -33,10 +35,7 @@ export class VacantesListComponent implements OnInit {
     });
   }
 
-  /*verDetalle(id: number) {
-    console.log('Ver detalle de vacante ID:', id);
-  }*/
-
+ 
   eliminarVacante(id: number) {
     const confirmar = confirm(`¿Seguro que deseas eliminar la vacante con ID ${id}?`);
     if (!confirmar) return;
@@ -52,6 +51,7 @@ export class VacantesListComponent implements OnInit {
       }
     });
   }
+
 
   
 }

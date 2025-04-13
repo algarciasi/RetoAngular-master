@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vacante } from '../interface/vacante'; // Asegúrate de tener esta interfaz
 
@@ -39,6 +39,10 @@ export class VacantesService {
       }
     });
   }
+
+
+
+  
   
 
 }

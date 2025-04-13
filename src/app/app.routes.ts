@@ -36,6 +36,6 @@ export const routes: Routes = [
   { path: 'solicitudes/todas', component: SolicitudCardComponent },
   { path: 'solicitudes/nueva', component: SolicitudesListComponent },
   { path: 'solicitudes/nueva/:id', component: SolicitudFormComponent },
-  { path: 'vacantes/buscar', component: VacantesFiltroComponent },
+  { path: 'vacantes/buscar', component: VacantesFiltroComponent }, 
   { path: '**', redirectTo: 'home' }
 ];
