@@ -35,7 +35,7 @@ export class EmpresaFormComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService //13/04
+    public authService: AuthService //13/04
   ) {}
 
   ngOnInit(): void {
