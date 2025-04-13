@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Empresa } from '../../interface/empresa';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { EmpresaService } from '../../services/empresa.service';
 
 @Component({
   selector: 'app-empresas-form',
@@ -35,34 +36,54 @@ export class EmpresaFormComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    public authService: AuthService //13/04
+    public authService: AuthService,
+    private empresaService: EmpresaService  //13/04
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-
-    console.log('[EDITAR EMPRESA] ID de la ruta:', id); 
-    if (!id) {
-      console.warn('No se ha recibido ID de empresa en la ruta');
-      return;
+    const rawId = this.route.snapshot.paramMap.get('id');
+    const id = Number(rawId);
+  
+    if (rawId && !isNaN(id) && id > 0) {
+      console.log('[EDITAR EMPRESA] ID de la ruta:', id);
+      this.http.get<Empresa>(`http://localhost:8086/empresas/buscar/${id}`)
+        .subscribe({
+          next: (data) => this.empresa = data,
+          error: (err) => {
+            console.error('Error al obtener empresa por ID', err);
+            alert('No se pudo cargar la empresa por ID.');
+          }
+        });
+    } else {
+      const email = this.authService.usuario()?.email;
+  
+      if (!email) {
+        console.warn('[EDITAR EMPRESA] No se encontró email del usuario autenticado');
+        return;
+      }
+  
+      console.log('[EDITAR EMPRESA] Buscando empresa por email:', email);
+  
+      this.empresaService.getEmpresaByEmail(email).subscribe({
+        next: (data) => this.empresa = data,
+        error: (err) => {
+          console.error('Error al obtener empresa por email', err);
+          alert('No se pudo cargar la empresa del usuario autenticado.');
+        }
+      });
     }
-
-    this.http.get<Empresa>(`http://localhost:8086/empresas/buscar/${id}`)
-      .subscribe(data => this.empresa = data);
   }
-
+  
 
   guardarCambios(): void {
     const id = this.empresa.idEmpresa;
-  
-    // Limpiamos campos que el backend no necesita o no puede procesar
+
     const usuarioPayload = {
       email: this.empresa.usuario.email,
       nombre: this.empresa.usuario.nombre,
       apellidos: this.empresa.usuario.apellidos
-      // ⚠️ No enviamos password ni fecha
     };
-  
+
     const payload = {
       empresa: {
         nombre: this.empresa.nombre,
@@ -73,12 +94,13 @@ export class EmpresaFormComponent implements OnInit {
       },
       usuario: usuarioPayload
     };
-  
+
     this.http.put(`http://localhost:8086/empresas/editar/${id}`, payload)
       .subscribe({
         next: () => {
           alert('Empresa actualizada');
-          this.router.navigate(['/admon']);
+          const redirectPath = this.authService.isAdmin() ? '/admon' : '/solicitudes';
+          this.router.navigate([redirectPath]);
         },
         error: err => {
           console.error('ERROR al actualizar la empresa', err);

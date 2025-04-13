@@ -107,11 +107,26 @@ export class EmpresaService {
   }
   
 
-  /*getByIdWithObservable(_id: string): Observable<Empresa>{
-    return this.httpClient.get<Empresa>(`${this.baseUrl}/${_id}`);
+  getEmpresaByEmail(email: string): Observable<Empresa> {
+    const password = localStorage.getItem('password');
+  
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  
+    if (email && password) {
+      headers = headers.set(
+        'Authorization',
+        'Basic ' + window.btoa(email + ':' + password)
+      );
+    } else {
+      return new Observable((observer) =>
+        observer.error('Credenciales no encontradas')
+      );
+    }
+  
+    return this.httpClient.get<Empresa>(`${this.baseUrl}/buscar-por-email/${email}`, {
+      headers
+    });
   }
-
-  borrar(_id: string): Observable<void> {
-    return this.httpClient.delete<void>(`${this.baseUrl}/${_id}`);
-  }*/
+  
+  
 }
