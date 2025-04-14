@@ -21,9 +21,21 @@ export class SolicitudCardComponent {
     public authService: AuthService
   ) {}
 
-  verDetalle() {
+  /*verDetalle() {
     alert(`Detalles de la solicitud #${this.solicitud.idSolicitud}`);
-  }
+  }*/
+
+    verDetalle() {
+      const estado = String(this.solicitud.estado); // cast de number → string
+    
+      if (estado === '1') {
+        alert(`🎉 ¡Has sido seleccionado para esta vacante!\n\n(Detalle de la solicitud #${this.solicitud.idSolicitud})`);
+      } else {
+        alert(`De momento no hay respuesta de la empresa #${this.solicitud.idSolicitud}`);
+      }
+    }
+    
+    
 
   cancelarSolicitud() {
     const confirmado = confirm('¿Estás seguro de que deseas cancelar esta solicitud?');
