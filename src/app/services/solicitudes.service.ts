@@ -21,8 +21,8 @@ export class SolicitudesService {
     return this.http.post<Solicitud>(`${this.apiUrl}/nueva`, solicitud);
   }
 
-   // GET /solicitudes/usuario?email=...
-   obtenerPorEmail(email: string): Observable<Solicitud[]> {
+  // GET /solicitudes/usuario?email=...
+  obtenerPorEmail(email: string): Observable<Solicitud[]> {
     return this.http.get<Solicitud[]>(`${this.apiUrl}/usuario?email=${email}`);
   }
 
@@ -33,12 +33,17 @@ export class SolicitudesService {
     });
   }
 
-//asignar vacante del endpoint de empresa "cagada"
+  //asignar vacante del endpoint de empresa "cagada"
   asignarVacante(idSolicitud: number) {
     return this.http.put(`http://localhost:8086/empresas/asignar/${idSolicitud}`, null, {
       responseType: 'text'
     });
   }
-  
+
+  // GET /solicitudes/empresa?email=...
+  obtenerPorEmailEmpresa(email: string): Observable<Solicitud[]> {
+    return this.http.get<Solicitud[]>(`${this.apiUrl}/empresa?email=${email}`);
+  }
+
 
 }
