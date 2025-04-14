@@ -1,25 +1,25 @@
 <section>
-    <h3>Alta de Categoría</h3>
-    <hr>
-  
-    <form class="card shadow p-4" (ngSubmit)="crearCategoria()">
-      
-      <h5>Datos de la Categoría</h5>
-  
-      <div class="mt-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" id="nombre" class="form-control" [(ngModel)]="categoria.nombre" name="nombre" required>
-      </div>
-  
-      <div class="mt-3">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <textarea id="descripcion" class="form-control" [(ngModel)]="categoria.descripcion" name="descripcion" required></textarea>
-      </div>
-  
-      <div class="d-flex justify-content-end mt-4">
-        <button class="btn btn-secondary me-2" [routerLink]="['/categorias/lista']" type="button">← Volver</button>
-        <button type="submit" class="btn btn-success">Crear Categoría</button>
-      </div>
-    </form>
-  </section>
-  
+  <h3>Alta de Categoría</h3>
+  <hr>
+
+  <form class="card shadow p-4" (ngSubmit)="crearCategoria()">
+
+    <h5>Datos de la Categoría</h5>
+
+    <div class="mt-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombre" class="form-control" [(ngModel)]="categoria.nombre" name="nombre" required>
+    </div>
+
+    <div class="mt-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea id="descripcion" class="form-control" [(ngModel)]="categoria.descripcion" name="descripcion"
+        required></textarea>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button class="btn btn-secondary me-2" [routerLink]="['/categorias/lista']" type="button">← Volver</button>
+      <button type="submit" class="btn btn-success">Crear Categoría</button>
+    </div>
+  </form>
+</section>

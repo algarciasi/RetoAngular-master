@@ -11,37 +11,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './empresas-list.component.html',
   styleUrl: './empresas-list.component.css'
 })
-export class EmpresasListComponent{
+export class EmpresasListComponent {
 
   arrEmpresas: Empresa[];
   empresaService = inject(EmpresaService);
 
-  constructor(){
-    this.arrEmpresas =[];
+  constructor() {
+    this.arrEmpresas = [];
   }
 
-  /*ngOnInit() {
-    this.empresaService.getAllWithObservables().subscribe({
-      next: (data) => {
-        this.arrEmpresas = data;
-        console.log('Empresas cargadas:', this.arrEmpresas);
-      },
-      error: (err) => {
-        console.error('Error al cargar empresas:', err);
-      }
-    });
-  }*/
+  ngOnInit(): void {
+    console.log("paso por aqui");
 
-    ngOnInit(): void{
-      console.log("paso por aqui");
-        /*this.empresaService.getAllWithObservables().pipe(Array =>{
-          Array.filter
-        })*/
-        
-        this.empresaService.getAllWithObservables().subscribe((data: Empresa[]) => {
-        console.log("datos", data);
-        this.arrEmpresas = data;
-      });
-    }
+    this.empresaService.getAllWithObservables().subscribe((data: Empresa[]) => {
+      console.log("datos", data);
+      this.arrEmpresas = data;
+    });
+  }
 
 }

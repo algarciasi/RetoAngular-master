@@ -19,14 +19,14 @@ export class SolicitudFormComponent implements OnInit {
   idVacante!: number;
   comentarios: string = '';
   curriculum: string = '';
-  archivoBase64: string | null = null; 
+  archivoBase64: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private solicitudService: SolicitudesService,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -35,12 +35,12 @@ export class SolicitudFormComponent implements OnInit {
 
   enviarSolicitud(): void {
     const usuario = this.authService.usuario();
-  
+
     if (!usuario || !usuario.email) {
       alert('Usuario no autenticado');
       return;
     }
-  
+
     const payload: SolicitudNuevaDto = {
       idVacante: this.idVacante,
       emailUsuario: usuario.email,
@@ -54,8 +54,8 @@ export class SolicitudFormComponent implements OnInit {
         emailUsuario: ''
       }
     };
-    
-  
+
+
     this.solicitudService.crear(payload).subscribe({
       next: () => {
         alert('Solicitud enviada con éxito');
@@ -67,8 +67,6 @@ export class SolicitudFormComponent implements OnInit {
       }
     });
   }
-  
-
 
   subirArchivo(event: Event): void {
     const input = event.target as HTMLInputElement;

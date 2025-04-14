@@ -22,16 +22,16 @@ export class AltaCategoriaComponent {
   constructor(
     private categoriaService: CategoriaService,
     private router: Router
-  ) {}
+  ) { }
 
   crearCategoria(): void {
     this.categoriaService.crearCategoria(this.categoria).subscribe({
       next: () => {
-        alert('Categoría creada correctamente');
+        alert('✅ Categoría creada correctamente');
         this.router.navigate(['/categorias/lista']);
       },
       error: (err) => {
-        alert('Error al crear la categoría');
+        alert('❌ Error al crear la categoría');
         console.error(err);
       }
     });

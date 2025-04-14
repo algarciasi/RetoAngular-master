@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-solicitud-card',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './solicitud-card.component.html',
   styleUrls: ['./solicitud-card.component.css'],
 })
@@ -19,34 +19,30 @@ export class SolicitudCardComponent {
     private solicitudesService: SolicitudesService,
     private router: Router,
     public authService: AuthService
-  ) {}
+  ) { }
 
-  /*verDetalle() {
-    alert(`Detalles de la solicitud #${this.solicitud.idSolicitud}`);
-  }*/
+  verDetalle() {
+    const estado = String(this.solicitud.estado); // casteo de number a string
 
-    verDetalle() {
-      const estado = String(this.solicitud.estado); // cast de number → string
-    
-      if (estado === '1') {
-        alert(`🎉 ¡Has sido seleccionado para esta vacante!\n\n(Detalle de la solicitud #${this.solicitud.idSolicitud})`);
-      } else {
-        alert(`De momento no hay respuesta de la empresa #${this.solicitud.idSolicitud}`);
-      }
+    if (estado === '1') {
+      alert(`🎉 ¡Has sido seleccionado para esta vacante!\n\n ${this.solicitud.nombreVacante}`);
+    } else {
+      alert(`☹️ De momento no hay respuesta de la empresa`);
     }
-    
-    
+  }
+
+
 
   cancelarSolicitud() {
     const confirmado = confirm('¿Estás seguro de que deseas cancelar esta solicitud?');
-  
+
     if (confirmado) {
       this.solicitudesService.cancelarSolicitud(this.solicitud.idSolicitud).subscribe({
         next: () => {
           alert('✅ Solicitud cancelada correctamente.');
-  
+
           const destino = this.authService.isEmpresa() ? '/solicitudes' : '/solicitudes/usuario';
-  
+
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([destino]);
           });
@@ -60,9 +56,9 @@ export class SolicitudCardComponent {
 
   asignarVacante() {
     const confirmado = confirm(`¿Deseas asignar esta vacante a este candidato?`);
-  
+
     if (!confirmado) return;
-  
+
     this.solicitudesService.asignarVacante(this.solicitud.idSolicitud).subscribe({
       next: () => {
         alert('✅ Vacante asignada correctamente.');
@@ -73,8 +69,8 @@ export class SolicitudCardComponent {
       }
     });
   }
-  
-  
+
+
 
 
 }

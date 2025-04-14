@@ -1,26 +1,25 @@
 <section class="container mt-5">
-    <h3>Formulario de Solicitud</h3>
-    <hr />
-  
-    <form (ngSubmit)="enviarSolicitud()">
-      <div class="mb-3">
-        <label for="comentarios" class="form-label">Comentarios</label>
-        <textarea id="comentarios" class="form-control" [(ngModel)]="comentarios" name="comentarios"></textarea>
-      </div>
-  
-      <div class="mb-3">
-        <label for="curriculum" class="form-label">Currículum</label>
-        <textarea id="curriculum" class="form-control" [(ngModel)]="curriculum" name="curriculum"></textarea>
-      </div>
+  <h3>Formulario de Solicitud</h3>
+  <hr />
 
-      <!-- ADJUNTAR ARCHIVO : FALLA EN EL BACKEND (DATA TOO LONG)-->
-      <div class="mb-3">
-        <label for="archivo" class="form-label">Adjuntar archivo (PDF)</label>
-        <input type="file" class="form-control" id="archivo" (change)="subirArchivo($event)" />
-      </div>
-  
-      <button class="btn btn-primary" type="submit">Enviar Solicitud</button>
-      <a [routerLink]="['/vacantes/todas']" class="btn btn-secondary ms-2">Cancelar</a>
-    </form>
-  </section>
-  
+  <form (ngSubmit)="enviarSolicitud()">
+    <div class="mb-3">
+      <label for="comentarios" class="form-label">Comentarios</label>
+      <textarea id="comentarios" class="form-control" [(ngModel)]="comentarios" name="comentarios"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="curriculum" class="form-label">Currículum</label>
+      <textarea id="curriculum" class="form-control" [(ngModel)]="curriculum" name="curriculum"></textarea>
+    </div>
+
+    <!-- ADJUNTAR ARCHIVO : FALLA EN EL BACKEND (DATA TOO LONG)-->
+    <div class="mb-3">
+      <label for="archivo" class="form-label">Adjuntar archivo (PDF)</label>
+      <input type="file" class="form-control" id="archivo" (change)="subirArchivo($event)" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar Solicitud</button>
+    <a [routerLink]="['/vacantes/todas']" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</section>

@@ -27,13 +27,13 @@ export class CategoriasListComponent {
         next: () => {
           // Eliminamos de la lista actual sin recargar
           this.categorias = this.categorias.filter(c => c.id !== id);
-          alert('Categoría eliminada correctamente.');
+          alert('✅ Categoría eliminada correctamente.');
         },
         error: (err) => {
           if (err.status === 409) {
-            alert('No se puede eliminar: la categoría tiene vacantes asociadas.');
+            alert('❌ No se puede eliminar: la categoría tiene vacantes asociadas.');
           } else {
-            alert('Error inesperado al eliminar la categoría.');
+            alert('❌ Error inesperado al eliminar la categoría.');
             console.error(err);
           }
         }

@@ -1,22 +1,21 @@
 <section class="container mt-5">
-    <h3>Editar Categoría</h3>
-    <hr />
-  
-    <form [formGroup]="form" (ngSubmit)="guardar()">
-      <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input formControlName="nombre" class="form-control" />
-      </div>
-  
-      <div class="mb-3">
-        <label class="form-label">Descripción</label>
-        <textarea formControlName="descripcion" class="form-control"></textarea>
-      </div>
-  
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-secondary me-2" [routerLink]="['/categorias/lista']" type="button">← Volver</button>
-        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Guardar</button>
-      </div>
-    </form>
-  </section>
-  
+  <h3>Editar Categoría</h3>
+  <hr />
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input formControlName="nombre" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea formControlName="descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-secondary me-2" [routerLink]="['/categorias/lista']" type="button">← Volver</button>
+      <button type="submit" class="btn btn-success" [disabled]="form.invalid">Guardar</button>
+    </div>
+  </form>
+</section>

@@ -75,12 +75,12 @@ export class UsuariosFormComponent {
   
     registro$.subscribe({
       next: (response: Usuario) => {
-        alert('Usuario creado correctamente: ' + response.nombre);
+        alert('✅ Usuario creado correctamente: ' + response.nombre);
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.error('Error al crear el usuario:', err);
-        alert('Hubo un error al intentar crear el usuario.');
+        console.error('❌ Error al crear el usuario:', err);
+        alert('❌ Hubo un error al intentar crear el usuario.');
       }
     });
   }

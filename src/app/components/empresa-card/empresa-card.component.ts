@@ -16,9 +16,9 @@ export class EmpresaCardComponent {
   @Input() miEmpresa!: Empresa;
 
   constructor(private router: Router,
-    private empresaService: EmpresaService) {}
+    private empresaService: EmpresaService) { }
 
-   editarEmpresa() {
+  editarEmpresa() {
     this.router.navigate([`/empresas/editar/${this.miEmpresa.idEmpresa}`]);
   }
 
@@ -28,7 +28,7 @@ export class EmpresaCardComponent {
       this.empresaService.eliminarEmpresa(this.miEmpresa.idEmpresa).subscribe({
         next: () => {
           alert('Empresa eliminada correctamente.');
-          // Recarga la vista o redirige
+          // Recarga la vista
           window.location.reload();
         },
         error: (err) => {

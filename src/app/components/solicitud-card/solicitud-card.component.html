@@ -28,9 +28,11 @@
   </div>
 
   <div class="d-flex justify-content-between mt-3 gap-2">
-    <button class="btn btn-outline-primary w-50" (click)="verDetalle()">
-      Ver Detalle
-    </button>
+    @if (!authService.isEmpresa()) {
+      <button class="btn btn-outline-primary w-50" (click)="verDetalle()">
+        Ver Detalle
+      </button>
+    }
     <button class="btn btn-danger w-50" (click)="cancelarSolicitud()">
       Cancelar Solicitud
     </button>

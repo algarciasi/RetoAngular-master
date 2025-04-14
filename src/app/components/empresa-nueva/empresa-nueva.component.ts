@@ -67,7 +67,7 @@ export class EmpresaNuevaComponent {
         },
         error: (err) => {
           console.error('Error al crear empresa', err);
-          alert('Error al crear la empresa. Revisa los datos.');
+          alert('❌ Error al crear la empresa. Revisa los datos.');
         }
       });
   }

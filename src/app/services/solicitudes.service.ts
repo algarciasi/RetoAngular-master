@@ -33,7 +33,7 @@ export class SolicitudesService {
     });
   }
 
-  //asignar vacante del endpoint de empresa "cagada"
+  // PUT asignar vacante del endpoint de empresa "cagada"
   asignarVacante(idSolicitud: number) {
     return this.http.put(`http://localhost:8086/empresas/asignar/${idSolicitud}`, null, {
       responseType: 'text'

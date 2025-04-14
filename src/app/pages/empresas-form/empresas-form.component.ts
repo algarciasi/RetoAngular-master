@@ -98,13 +98,13 @@ export class EmpresaFormComponent implements OnInit {
     this.http.put(`http://localhost:8086/empresas/editar/${id}`, payload)
       .subscribe({
         next: () => {
-          alert('Empresa actualizada');
+          alert('✅ Empresa actualizada');
           const redirectPath = this.authService.isAdmin() ? '/admon' : '/solicitudes';
           this.router.navigate([redirectPath]);
         },
         error: err => {
-          console.error('ERROR al actualizar la empresa', err);
-          alert('No se pudo actualizar. Revisa tu rol o los datos enviados.');
+          console.error('❌ ERROR al actualizar la empresa', err);
+          alert('❌ No se pudo actualizar. Revisa tu rol o los datos enviados.');
         }
       });
   }

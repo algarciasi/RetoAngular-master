@@ -28,7 +28,7 @@ export class VacantesFormComponent implements OnInit {
     private vacantesService: VacantesService,
     private router: Router,
     private categoriasService: CategoriaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -45,69 +45,58 @@ export class VacantesFormComponent implements OnInit {
     // Cargamos las categorías desde el backend
     this.categoriasService.obtenerTodas().subscribe({
       next: (data) => {
-        console.log('🔍 Categorías recibidas desde el back:', data); // ← AÑADIR AQUÍ
+        console.log('✅ Categorías recibidas desde el back:', data);
         this.categorias = data;
       },
-      error: (err) => console.error('Error al cargar categorías', err),
+      error: (err) => console.error('❌ Error al cargar categorías', err),
     });
   }
 
-  /*guardar(): void {
-    const vacante: Vacante = this.form.value;
+  guardar(): void {
+    if (this.form.invalid) return;
 
-    console.log(this.form.value);
+    console.log('Form Value:', this.form.value);
+    console.log('Tiene detalles?', 'detalles' in this.form.value);
+    console.log('Valor de detalles:', this.form.value.detalles);
 
-    this.vacantesService.crearVacante(vacante).subscribe({
-      next: () => this.router.navigate(['/vacantes']),
-      error: (err) => console.error('Error al crear vacante:', err),
+
+    const formValue = this.form.value;
+
+    // Asegurarse de que idCategoria sea number
+    const idCategoria = Number(formValue.idCategoria);
+    if (!idCategoria || isNaN(idCategoria)) {
+      console.error('Categoría inválida. Valor:', formValue.idCategoria);
+      return;
+    }
+
+    // Formateado de la fecha a string compatible con backend
+    const fechaFormateada = new Date(formValue.fecha).toISOString().split('T')[0];
+
+    const payload: Vacante = {
+      ...formValue,
+      fecha: fechaFormateada,
+      idCategoria: idCategoria,
+      idEmpresa: 1,
+      idVacante: 0,
+      destacado: formValue.destacado,
+      imagen: '',
+      detalles: formValue.detalles || 'Detalles no especificados',
+      nombreEmpresa: ''
+    };
+
+    console.log('Payload enviado al backend:', payload);
+
+    this.vacantesService.crearVacante(payload).subscribe({
+      next: () => this.router.navigate(['/solicitudes']),
+      error: (err) => console.error('❌ Error al crear vacante:', err),
     });
-  }*/
-
-    guardar(): void {
-      if (this.form.invalid) return;
-
-      console.log('✅ Form Value:', this.form.value);
-      console.log('✅ Tiene detalles?', 'detalles' in this.form.value);
-      console.log('✅ Valor de detalles:', this.form.value.detalles);
-
-    
-      const formValue = this.form.value;
-    
-      // Asegurarse de que idCategoria sea number
-      const idCategoria = Number(formValue.idCategoria);
-      if (!idCategoria || isNaN(idCategoria)) {
-        console.error('Categoría inválida. Valor:', formValue.idCategoria);
-        return;
-      }
-    
-      // 🔧 Formatear la fecha a string compatible con backend
-      const fechaFormateada = new Date(formValue.fecha).toISOString().split('T')[0];
-    
-      const payload: Vacante = {
-        ...formValue,
-        fecha: fechaFormateada,
-        idCategoria: idCategoria,
-        idEmpresa: 1,
-        idVacante: 0,
-        destacado: formValue.destacado,
-        imagen: '',
-        detalles: formValue.detalles || 'Detalles no especificados',
-        nombreEmpresa: ''
-      };
-    
-      console.log('🚀 Payload enviado al backend:', payload);
-    
-      this.vacantesService.crearVacante(payload).subscribe({
-        next: () => this.router.navigate(['/solicitudes']),
-        error: (err) => console.error('❌ Error al crear vacante:', err),
-      });
-    }
-    
-    private getFechaActual(): string {
-      const today = new Date();
-      // Devuelve la fecha en formato 'YYYY-MM-DD' (útil para inputs tipo date)
-      return today.toISOString().substring(0, 10);
-    }
-    
-    
   }
+
+  private getFechaActual(): string {
+    const today = new Date();
+    // Devuelve la fecha en formato 'YYYY-MM-DD' (para inputs tipo date)
+    return today.toISOString().substring(0, 10);
+  }
+
+
+}

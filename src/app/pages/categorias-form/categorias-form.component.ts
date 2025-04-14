@@ -19,7 +19,7 @@ export class CategoriasFormComponent implements OnInit {
     private categoriaService: CategoriaService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -34,7 +34,7 @@ export class CategoriasFormComponent implements OnInit {
         next: (categoria) => {
           this.form.patchValue(categoria);
         },
-        error: (err) => console.error('Error cargando categoría', err)
+        error: (err) => console.error('❌ Error cargando categoría', err)
       });
     }
   }
@@ -45,15 +45,10 @@ export class CategoriasFormComponent implements OnInit {
       nombre: this.form.value.nombre,
       descripcion: this.form.value.descripcion
     };
-  
+
     this.categoriaService.actualizarCategoria(categoria).subscribe({
       next: () => this.router.navigate(['/categorias/lista']),
-      error: err => console.error('Error al guardar', err)
+      error: err => console.error('❌ Error al guardar', err)
     });
   }
-  
-
-  /*volver(): void {
-    this.router.navigate(['/categorias']);
-  }*/
 }

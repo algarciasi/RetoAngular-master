@@ -23,7 +23,7 @@ export class VacantesFiltroComponent {
     categoria: '',
     pais: '',
     fechaDesde: '',
-    salarioMin: 16576,
+    salarioMin: '',
   };
 
   categorias: Categoria[] = [];
@@ -66,28 +66,12 @@ export class VacantesFiltroComponent {
     });
   }
 
-  /*filtro(): void {
-    this.filtrar.emit(this.filtros);
-  }*/
-
     filtro(): void {
-      // 👉 Redirige a vacantes/listado con filtros en la URL
+      // Redirige a vacantes/listado con filtros en la URL
       this.router.navigate(['/vacantes/todas'], {
         queryParams: this.filtros
       });
     }
-    
-
-  /*vaciarFiltro(): void {
-    this.filtros = {
-      nombre: '',
-      categoria: '',
-      pais: '',
-      fechaDesde: '',
-      salarioMin: 16576,
-    };
-    this.filtrar.emit(this.filtros);
-  }*/
 
     vaciarFiltro(): void {
       this.filtros = {
@@ -95,7 +79,7 @@ export class VacantesFiltroComponent {
         categoria: '',
         pais: '',
         fechaDesde: '',
-        salarioMin: 16576,
+        salarioMin: ''
       };
       this.router.navigate(['/vacantes/todas']);
     }

@@ -29,12 +29,12 @@ export class UsuariosListComponent implements OnInit {
 
     this.usuarioService.bajaUsuarioWithObservable(email).subscribe({
       next: () => {
-        alert('Usuario eliminado correctamente');
+        alert('✅ Usuario eliminado correctamente');
         this.usuarios = this.usuarios.filter(u => u.email !== email); // actualizar lista
       },
       error: err => {
-        console.error('Error al eliminar usuario', err);
-        alert('No se pudo eliminar el usuario');
+        console.error('❌ Error al eliminar usuario', err);
+        alert('❌ No se pudo eliminar el usuario');
       }
     });
   }

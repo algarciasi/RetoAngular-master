@@ -21,51 +21,38 @@ export class LoginFormComponent {
     });
   }
 
-  /*onSubmit() {
+  onSubmit() {
     const { email, password } = this.loginForm.value;
-  
+
     this.authService.loginPass(email, password).subscribe({
       next: usuario => {
-        this.router.navigate(['/home']);
+        console.log('Login exitoso:', usuario);
+
+        // Guardar usuario en localStorage para el resto de la app
+        localStorage.setItem('usuario', JSON.stringify(usuario));
+
+        // Redirigir según rol
+        switch (usuario.rol) {
+          case 'ADMON':
+            this.router.navigate(['/admon']);
+            break;
+          case 'CLIENTE':
+            this.router.navigate(['/vacantes/todas']);
+            break;
+          case 'EMPRESA':
+            this.router.navigate(['/solicitudes']);
+            break;
+          default:
+            this.router.navigate(['/home']);
+            break;
+        }
       },
       error: () => {
         this.error = 'Credenciales incorrectas';
       }
     });
-  }*/
+  }
 
-    onSubmit() {
-      const { email, password } = this.loginForm.value;
-    
-      this.authService.loginPass(email, password).subscribe({
-        next: usuario => {
-          console.log('Login exitoso:', usuario);
-    
-          // Guardar usuario en localStorage para el resto de la app
-          localStorage.setItem('usuario', JSON.stringify(usuario));
-    
-          // Redirigir según rol
-          switch (usuario.rol) {
-            case 'ADMON':
-              this.router.navigate(['/admon']);
-              break;
-            case 'CLIENTE':
-              this.router.navigate(['/vacantes/todas']);
-              break;
-            case 'EMPRESA':
-              this.router.navigate(['/solicitudes']);
-              break;
-            default:
-              this.router.navigate(['/home']);
-              break;
-          }
-        },
-        error: () => {
-          this.error = 'Credenciales incorrectas';
-        }
-      });
-    }
-     
-  
-  
+
+
 }

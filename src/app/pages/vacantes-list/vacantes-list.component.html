@@ -1,17 +1,17 @@
 <section class="container mt-5">
   <h3>Listado de Vacantes</h3>
   <hr />
-  
+
   @if (!authService.isCliente()) {
-    <div class="d-flex justify-content-end mb-3">
-      <a class="btn btn-primary" [routerLink]="['/vacantes/nueva']">Crear Vacante</a>
-    </div>
+  <div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-primary" [routerLink]="['/vacantes/nueva']">Crear Vacante</a>
+  </div>
   }
 
   <div class="d-flex justify-content-end mb-3">
     <a routerLink="/vacantes/buscar" class="btn btn-outline-primary">Buscar Vacantes</a>
   </div>
-  
+
 
   <table class="table table-striped mt-3">
     <thead class="table-dark">
@@ -27,25 +27,25 @@
     </thead>
     <tbody>
       @for (vacante of vacantes; track vacante.idVacante) {
-        <tr>
-          <td>{{ vacante.idVacante }}</td>
-          <td>{{ vacante.nombre }}</td>
-          <td>{{ vacante.descripcion }}</td>
-          <td>{{ vacante.fecha | date: 'mediumDate' }}</td> 
-          <td>{{ vacante.estatus }}</td>
-          <td>{{ vacante.nombreEmpresa || 'Sin empresa' }}</td>
-          <td>
-            @if (!authService.isCliente()) {
-              <button class="btn btn-danger btn-sm" (click)="eliminarVacante(vacante.idVacante)">
-                Eliminar
-              </button>
-            } @else {
-              <button class="btn btn-success btn-sm" [routerLink]="['/solicitudes/nueva', vacante.idVacante]">
-                Inscribirse
-              </button>
-            }
-          </td>
-        </tr>
+      <tr>
+        <td>{{ vacante.idVacante }}</td>
+        <td>{{ vacante.nombre }}</td>
+        <td>{{ vacante.descripcion }}</td>
+        <td>{{ vacante.fecha | date: 'mediumDate' }}</td>
+        <td>{{ vacante.estatus }}</td>
+        <td>{{ vacante.nombreEmpresa || 'Sin empresa' }}</td>
+        <td>
+          @if (!authService.isCliente()) {
+          <button class="btn btn-danger btn-sm" (click)="eliminarVacante(vacante.idVacante)">
+            Eliminar
+          </button>
+          } @else {
+          <button class="btn btn-success btn-sm" [routerLink]="['/solicitudes/nueva', vacante.idVacante]">
+            Inscribirse
+          </button>
+          }
+        </td>
+      </tr>
       }
     </tbody>
   </table>
