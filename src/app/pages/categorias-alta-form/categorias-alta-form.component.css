@@ -1,0 +1,53 @@
+h3 {
+    font-weight: 700;
+    color: #0d47a1;
+    margin-bottom: 20px;
+  }
+  
+  form.card {
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+  
+  label.form-label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  input.form-control,
+  textarea.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  input.form-control:focus,
+  textarea.form-control:focus {
+    box-shadow: 0 0 5px rgba(21, 101, 192, 0.3);
+    border-color: #90caf9;
+  }
+  
+  button.btn {
+    min-width: 140px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  button.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/']">Reto Empleo</a>
+    <a class="navbar-brand" [routerLink]="['/']">Reto Grupo 4 DAW</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,63 +19,53 @@
         </li>
         }
 
-
         @if (isLoggedIn()) {
         <li class="nav-item">
           <a class="nav-link disabled">
-            Bienvenido, {{ usuario()?.nombre }} {{ usuario()?.email }} con rol= {{ usuario()?.rol }})
+            Bienvenido {{ usuario()?.rol }}, {{ usuario()?.nombre }}
           </a>
         </li>
 
-        <!-- Botón "Alta Empresa" ROL ADMON -->
+        <!-- ADMON -->
         @if (usuario()?.rol === 'ADMON') {
         <li class="nav-item">
-          <a class="btn btn-success ms-2" [routerLink]="['/empresas/nueva']">Alta Empresa</a>
+          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/empresas/nueva']">🏢 Alta Empresa</a>
         </li>
-
         <li class="nav-item">
-          <a class="btn btn-warning ms-2" [routerLink]="['/categorias/lista']">Alta Categoría</a>
+          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/categorias/lista']">🗂️ Alta Categoría</a>
         </li>
-
         <li class="nav-item">
-          <button class="btn btn-danger ms-2" [routerLink]="['/usuarios']">
-            Baja Usuario
-          </button>
+          <button class="btn btn-outline-light navbar-btn" [routerLink]="['/usuarios']">🧍‍♂️ Baja Usuario</button>
         </li>
         }
 
-        <!-- Botón "Vacantes" ROL EMPRESA -->
+        <!-- EMPRESA -->
         @if (usuario()?.rol === 'EMPRESA') {
         <li class="nav-item">
-          <a class="btn btn-info ms-2" [routerLink]="['/vacantes/todas']">
-            Vacantes
-          </a>
+          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/vacantes/todas']">📋 Vacantes</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-secondary ms-2" [routerLink]="['/empresas/editar', usuario()?.idEmpresa]">
-            Editar Empresa
-          </a>
+          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/empresas/editar', usuario()?.idEmpresa]">✏️
+            Editar Empresa</a>
         </li>
-
-
         }
 
-        <!-- Botón "Solicitudes" ROL CLIENTE -->
+        <!-- CLIENTE -->
         @if (usuario()?.rol === 'CLIENTE') {
         <li class="nav-item">
-          <a class="btn btn-outline-info ms-2" [routerLink]="['/solicitudes/usuario']">
-            Solicitudes
-          </a>
+          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/solicitudes/usuario']">📨 Solicitudes</a>
         </li>
         }
 
 
+        <!-- LOGOUT -->
         <li class="nav-item">
-          <button class="btn btn-outline-light ms-2" (click)="logout()">Logout</button>
+          <button class="btn btn-outline-light navbar-btn" (click)="logout()">🚪 Logout</button>
         </li>
+
         } @else {
         <li class="nav-item">
-          <a class="btn btn-outline-light ms-2" [routerLink]="['/login']">Login</a>
+          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/login']">Login</a>
         </li>
         }
       </ul>

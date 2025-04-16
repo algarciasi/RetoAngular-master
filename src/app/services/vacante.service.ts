@@ -40,7 +40,10 @@ export class VacantesService {
     });
   }
 
-
+  obtenerVacantesPorEmail(email: string): Observable<Vacante[]> {
+    return this.http.get<Vacante[]>(`${this.baseUrl}/buscarPorEmail/${email}`);
+  }
+  
   
 
 

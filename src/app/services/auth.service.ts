@@ -19,8 +19,6 @@ export class AuthService {
 
   readonly isCliente = computed(() => this._usuario()?.rol === 'CLIENTE');
 
-
-
   constructor(private http: HttpClient, private router: Router) {}
 
   login(usuario: Usuario) {
@@ -73,4 +71,9 @@ export class AuthService {
         })
       );
   }
+
+  getEmail(): string {
+    return this._usuario()?.email || '';
+  }
+  
 }

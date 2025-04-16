@@ -15,6 +15,9 @@ export class UsuariosListComponent implements OnInit {
 
   usuarios: Usuario[] = [];
 
+  campoOrden: keyof Usuario = 'email';
+  ascendente: boolean = true;
+
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
@@ -36,6 +39,28 @@ export class UsuariosListComponent implements OnInit {
         console.error('❌ Error al eliminar usuario', err);
         alert('❌ No se pudo eliminar el usuario');
       }
+    });
+  }
+
+  ordenarPor(campo: keyof Usuario) {
+    if (this.campoOrden === campo) {
+      this.ascendente = !this.ascendente; // alterna asc/desc
+    } else {
+      this.campoOrden = campo;
+      this.ascendente = true; // nuevo campo: reset a ascendente
+    }
+
+    this.ordenarLista();
+  }
+
+  private ordenarLista() {
+    this.usuarios.sort((a, b) => {
+      const valorA = (a[this.campoOrden] ?? '').toString().toLowerCase();
+      const valorB = (b[this.campoOrden] ?? '').toString().toLowerCase();
+
+      if (valorA < valorB) return this.ascendente ? -1 : 1;
+      if (valorA > valorB) return this.ascendente ? 1 : -1;
+      return 0;
     });
   }
 

@@ -1,7 +1,7 @@
 <div class="card shadow p-3 mb-3 w-100 text-start">
 
   <div class="card-body">
-    <h5 class="card-title">Solicitud #{{ solicitud.idSolicitud }}</h5>
+    <h5 class="card-title">Nº Solicitud: {{ solicitud.idSolicitud }}</h5>
 
     <p class="card-text mb-1">
       📅 <strong>Fecha:</strong> {{ solicitud.fecha | date: 'longDate' }}
@@ -24,6 +24,11 @@
       <a [href]="'/assets/cv/' + solicitud.curriculum" target="_blank">
         Descargar CV
       </a>
+    </p>
+
+    <p class="card-text mb-1">
+      🏷️ <strong>Estado:</strong>
+      <span class="badge bg-info text-dark">{{ solicitud.estado || 'PENDIENTE' }}</span>
     </p>
   </div>
 

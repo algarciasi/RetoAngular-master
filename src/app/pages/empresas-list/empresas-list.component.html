@@ -1,8 +1,8 @@
-<h2>Listado de Empresas</h2>
+<h2 class="text-center mt-4 text-primary">Listado de Empresas</h2>
 
 @if (arrEmpresas.length > 0) {
   <div class="container mt-4">
-    <div class="row">
+    <div class="row g-4 justify-content-center cards-container">
       @for (empresa of arrEmpresas; track empresa.idEmpresa) {
         <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
           <app-empresa-card [miEmpresa]="empresa" />
@@ -11,5 +11,7 @@
     </div>
   </div>
 } @else {
-  <p>❌ No hay empresas registradas.</p>
+  <div class="text-center mt-5">
+    <p class="alert alert-warning">❌ No hay empresas registradas.</p>
+  </div>
 }

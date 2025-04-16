@@ -1,21 +1,61 @@
 .card {
-    width: 300px;
-    height: 100%;
-    min-height: 340px;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .card-body {
-    flex-grow: 1;
-  }
-  
-  .card-footer {
-    background-color: #0276eb;
-    border-top: 1px solid #dddddd;
-  }
-  
+  width: 100%;
+  min-height: 360px;
+  margin: 10px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid #e3f2fd;
+  background-color: #ffffff;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+  flex-grow: 1;
+  padding-bottom: 0;
+}
+
+.card-title {
+  color: #0d47a1;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.card-text strong {
+  color: #1976d2;
+}
+
+.card a {
+  color: #1565c0;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+button.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+button.btn:hover {
+  transform: translateY(-1px);
+}
+
+.mt-3 button,
+.mt-3 .btn {
+  font-weight: 500;
+}

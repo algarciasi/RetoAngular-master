@@ -1,32 +1,54 @@
+/* Fondo degradado del navbar */
 .navbar {
-    background: linear-gradient(90deg, #0d47a1, #1976d2, #42a5f5);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  }
-  
-  .navbar .navbar-brand {
-    font-weight: bold;
-    font-size: 1.4rem;
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  }
-  
-  .navbar .nav-link {
-    color: #e3f2fd !important;
-    margin-right: 10px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .navbar .nav-link:hover {
-    color: #ffffff !important;
-    text-decoration: underline;
-  }
-  
-  .navbar .btn {
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .navbar .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-  }
-  
+  background: linear-gradient(90deg, #0d47a1, #1976d2, #42a5f5);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem 1.2rem;
+}
+
+/* Marca / logo */
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Enlaces simples (Inicio, Registro) */
+.navbar .nav-link {
+  color: #e3f2fd !important;
+  margin-right: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+/* Botones minimalista */
+.navbar .btn,
+.navbar .btn-outline-light,
+.navbar .navbar-btn {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  margin-left: 10px;
+  border-radius: 6px;
+  min-width: 140px;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover para todos los botones del navbar */
+.navbar .btn:hover,
+.navbar .btn-outline-light:hover,
+.navbar .navbar-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}

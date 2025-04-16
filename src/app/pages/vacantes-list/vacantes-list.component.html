@@ -1,56 +1,68 @@
 <section class="container mt-5">
-  <h3>Listado de Vacantes</h3>
+  <h3 class="text-center text-primary">Listado de Vacantes</h3>
   <hr />
 
   @if (!authService.isCliente()) {
   <div class="d-flex justify-content-end mb-3">
-    <a class="btn btn-primary" [routerLink]="['/vacantes/nueva']">Crear Vacante</a>
+    <a class="btn btn-outline-primary navbar-btn" [routerLink]="['/vacantes/nueva']">➕ Crear Vacante</a>
   </div>
   }
 
   <div class="d-flex justify-content-end mb-3">
-    <a routerLink="/vacantes/buscar" class="btn btn-outline-primary">Buscar Vacantes</a>
+    <a routerLink="/vacantes/buscar" class="btn btn-outline-primary navbar-btn">🔍 Buscar Vacantes</a>
   </div>
 
+  <div class="table-responsive shadow-sm">
+    <table class="table table-striped mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th (click)="ordenarPor('nombre')" style="cursor: pointer;">
+            Nombre {{ campoOrden === 'nombre' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('descripcion')" style="cursor: pointer;">
+            Descripción {{ campoOrden === 'descripcion' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('fecha')" style="cursor: pointer;">
+            Fecha {{ campoOrden === 'fecha' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('estatus')" style="cursor: pointer;">
+            Estado {{ campoOrden === 'estatus' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('nombreEmpresa')" style="cursor: pointer;">
+            Empresa {{ campoOrden === 'nombreEmpresa' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (vacante of vacantes; track vacante.idVacante) {
+        <tr>
+          <!--<td>{{ vacante.idVacante }}</td>-->
+          <td>{{ vacante.nombre }}</td>
+          <td>{{ vacante.descripcion }}</td>
+          <td>{{ vacante.fecha | date: 'mediumDate' }}</td>
+          <td>{{ vacante.estatus }}</td>
+          <td>{{ vacante.nombreEmpresa || 'Sin empresa' }}</td>
+          <td>
+            @if (!authService.isCliente()) {
+            <button class="btn btn-outline-danger btn-sm" (click)="eliminarVacante(vacante.idVacante)">
+              Eliminar
+            </button>
+            } @else {
+            <button class="btn btn-outline-success btn-sm" [routerLink]="['/solicitudes/nueva', vacante.idVacante]">
+              Inscribirse
+            </button>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 
-  <table class="table table-striped mt-3">
-    <thead class="table-dark">
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Fecha</th>
-        <th>Estado</th>
-        <th>Empresa</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (vacante of vacantes; track vacante.idVacante) {
-      <tr>
-        <td>{{ vacante.idVacante }}</td>
-        <td>{{ vacante.nombre }}</td>
-        <td>{{ vacante.descripcion }}</td>
-        <td>{{ vacante.fecha | date: 'mediumDate' }}</td>
-        <td>{{ vacante.estatus }}</td>
-        <td>{{ vacante.nombreEmpresa || 'Sin empresa' }}</td>
-        <td>
-          @if (!authService.isCliente()) {
-          <button class="btn btn-danger btn-sm" (click)="eliminarVacante(vacante.idVacante)">
-            Eliminar
-          </button>
-          } @else {
-          <button class="btn btn-success btn-sm" [routerLink]="['/solicitudes/nueva', vacante.idVacante]">
-            Inscribirse
-          </button>
-          }
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
-
-  <button class="btn btn-secondary me-2" [routerLink]="['/solicitudes']" type="button">
-    ← Volver
-  </button>
+  <div class="d-flex justify-content-end mt-4">
+    <button class="btn btn-outline-secondary px-4" [routerLink]="['/solicitudes']" type="button">
+      ← Volver
+    </button>
+  </div>
 </section>

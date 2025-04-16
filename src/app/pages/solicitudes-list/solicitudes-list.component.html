@@ -1,11 +1,17 @@
-<h2 class="text-center mb-4">Listado de Solicitudes</h2>
+<section class="container mt-5">
+  <h2 class="text-center text-primary mb-4">Listado de Solicitudes</h2>
 
-<div class="container">
-  <div class="row g-3 justify-content-center">
+  <div class="row g-4 justify-content-center">
     @for (solicitud of solicitudes; track solicitud.idSolicitud) {
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
         <app-solicitud-card [solicitud]="solicitud" class="w-100"></app-solicitud-card>
       </div>
     }
+
+    @if (solicitudes.length === 0) {
+      <div class="col-12 text-center mt-4">
+        <p class="alert alert-info">No hay solicitudes registradas.</p>
+      </div>
+    }
   </div>
-</div>
+</section>

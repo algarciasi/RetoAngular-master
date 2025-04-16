@@ -1,25 +1,29 @@
 <section class="container mt-5">
-  <h3>Formulario de Solicitud</h3>
+  <h3 class="text-center text-primary">Formulario de Solicitud</h3>
   <hr />
 
-  <form (ngSubmit)="enviarSolicitud()">
+  <form class="card shadow p-4" (ngSubmit)="enviarSolicitud()">
     <div class="mb-3">
-      <label for="comentarios" class="form-label">Comentarios</label>
-      <textarea id="comentarios" class="form-control" [(ngModel)]="comentarios" name="comentarios"></textarea>
+      <label for="comentarios" class="form-label">💬 Comentarios</label>
+      <textarea id="comentarios" class="form-control" [(ngModel)]="comentarios" name="comentarios" rows="3"></textarea>
     </div>
 
     <div class="mb-3">
-      <label for="curriculum" class="form-label">Currículum</label>
-      <textarea id="curriculum" class="form-control" [(ngModel)]="curriculum" name="curriculum"></textarea>
+      <label for="curriculum" class="form-label">📎 Nombre del archivo CV</label>
+      <textarea id="curriculum" class="form-control" [(ngModel)]="curriculum" name="curriculum" rows="2"></textarea>
     </div>
 
-    <!-- ADJUNTAR ARCHIVO : FALLA EN EL BACKEND (DATA TOO LONG)-->
     <div class="mb-3">
-      <label for="archivo" class="form-label">Adjuntar archivo (PDF)</label>
+      <label for="archivo" class="form-label">📄 Adjuntar archivo (PDF)</label>
       <input type="file" class="form-control" id="archivo" (change)="subirArchivo($event)" />
+      <div class="form-text text-danger mt-1">
+        * Por ahora el backend solo permite texto corto 
+      </div>
     </div>
 
-    <button class="btn btn-primary" type="submit">Enviar Solicitud</button>
-    <a [routerLink]="['/vacantes/todas']" class="btn btn-secondary ms-2">Cancelar</a>
+    <div class="d-flex justify-content-end mt-4">
+      <a [routerLink]="['/vacantes/todas']" class="btn btn-outline-secondary me-2">← Cancelar</a>
+      <button class="btn btn-outline-primary" type="submit">Enviar Solicitud</button>
+    </div>
   </form>
 </section>

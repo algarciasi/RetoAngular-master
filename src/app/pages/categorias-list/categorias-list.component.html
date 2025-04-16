@@ -1,39 +1,41 @@
 <section class="container mt-5">
-  <h3>Gestión de Categorías</h3>
-  <hr>
+  <h3 class="text-center text-primary">Listado de Categorías</h3>
+  <hr />
 
   <div class="mb-3 text-end">
-    <a class="btn btn-primary" [routerLink]="['/categorias/nueva']">Nueva Categoría</a>
+    <a class="btn btn-outline-light navbar-btn" [routerLink]="['/categorias/nueva']">➕ Nueva Categoría</a>
   </div>
 
   @if (categorias.length > 0) {
-  <table class="table table-striped mt-3">
+  <table class="table table-striped shadow-sm mt-3">
     <thead class="table-dark">
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Acciones</th>
+        <!--<th>ID</th>-->
+        <th>📂 Nombre</th>
+        <th style="width: 180px;">⚙️ Acciones</th>
       </tr>
     </thead>
     <tbody>
       @for (categoria of categorias; track categoria.id) {
       <tr>
-        <td>{{ categoria.id }}</td>
+        <!--<td>{{ categoria.id }}</td>-->
         <td>{{ categoria.nombre }}</td>
         <td>
-          <a class="btn btn-sm btn-warning me-2" [routerLink]="['/categorias/editar', categoria.id]">Editar</a>
-          <button class="btn btn-sm btn-danger" (click)="eliminarCategoria(categoria.id)">Eliminar</button>
+          <a class="btn btn-sm btn-outline-warning me-2" [routerLink]="['/categorias/editar', categoria.id]">Editar</a>
+          <button class="btn btn-sm btn-outline-danger" (click)="eliminarCategoria(categoria.id)">Eliminar</button>
         </td>
       </tr>
       }
     </tbody>
-    <button class="btn btn-secondary me-2" [routerLink]="['/admon']" type="button">← Volver</button>
-
   </table>
+
+  <div class="text-end mt-4">
+    <button class="btn btn-outline-secondary" [routerLink]="['/admon']" type="button">← Volver</button>
+  </div>
 
   } @else {
   <div class="alert alert-info mt-4">
-    No hay categorías registradas.
+    ℹ️ No hay categorías registradas.
   </div>
   }
 </section>

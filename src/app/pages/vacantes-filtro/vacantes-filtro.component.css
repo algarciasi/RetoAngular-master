@@ -1,0 +1,54 @@
+form.container {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    animation: fadeInFiltro 0.7s ease-in-out;
+    margin-bottom: 40px;
+  }
+  
+  form .form-label {
+    font-weight: 600;
+    color: #0d47a1;
+  }
+  
+  form .form-select,
+  form .form-control {
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  form .form-select:focus,
+  form .form-control:focus {
+    box-shadow: 0 0 8px rgba(21, 101, 192, 0.25);
+    border-color: #1976d2;
+  }
+  
+  form .btn {
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  form .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  form .btn-outline-secondary {
+    min-width: 140px;
+    font-weight: 600;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+  }
+  
+  form .btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  @keyframes fadeInFiltro {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

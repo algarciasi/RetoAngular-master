@@ -1,61 +1,59 @@
 <section class="container mt-5">
-    <h3>Crear Vacante</h3>
-    <hr />
-  
-    <form [formGroup]="form" (ngSubmit)="guardar()">
-      <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input type="text" formControlName="nombre" class="form-control" />
-      </div>
-  
-      <div class="mb-3">
-        <label class="form-label">Descripción</label>
-        <textarea formControlName="descripcion" class="form-control"></textarea>
-      </div>
-  
-      <div class="mb-3">
-        <label class="form-label">Fecha</label>
-        <input type="date" formControlName="fecha" class="form-control" />
-      </div>
-  
-      <div class="mb-3">
-        <label class="form-label">Salario</label>
-        <input type="number" formControlName="salario" class="form-control" />
-      </div>
-  
-      <div class="mb-3">
-        <label class="form-label">Estado</label>
-        <input type="text" class="form-control" formControlName="estatus" readonly />
-      </div>
+  <h3 class="text-center text-primary">Crear Vacante</h3>
+  <hr />
 
-      <div class="mb-3">
-        <label class="form-label">Destacado</label>
-        <select class="form-select" formControlName="destacado">
-          <option value="S">Sí</option>
-          <option value="N">No</option>
-        </select>
-      </div>
+  <form class="card shadow p-4" [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="mb-3">
+      <label class="form-label">📌 Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control" />
+    </div>
 
-      <div class="mb-3">
-        <label class="form-label">Categoría</label>
-        <select formControlName="idCategoria" class="form-select">
-          <option value="" disabled>Selecciona una categoría</option>
-        
-          @for (categoria of categorias; track categoria.id) {
-            <option [value]="categoria.id">{{ categoria.nombre }}</option>
-          }
-        </select>
-      </div>
-      
-      <div class="mb-3">
-        <label class="form-label">Detalles</label>
-        <textarea formControlName="detalles" class="form-control"></textarea>
-      </div>
-  
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-secondary me-2" [routerLink]="['/vacantes/todas']" type="button">← Volver</button>
-        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Crear</button>
-      </div>
-    </form>
-  </section>
-  
+    <div class="mb-3">
+      <label class="form-label">📝 Descripción</label>
+      <textarea formControlName="descripcion" class="form-control" rows="3"></textarea>
+    </div>
+
+    <!--<div class="mb-3">
+      <label class="form-label">📅 Fecha</label>
+      <input type="date" formControlName="fecha" class="form-control" />
+    </div>-->
+
+    <div class="mb-3">
+      <label class="form-label">💰 Salario (€)</label>
+      <input type="number" formControlName="salario" class="form-control" />
+    </div>
+
+    <!--<div class="mb-3">
+      <label class="form-label">📄 Estado</label>
+      <input type="text" class="form-control" formControlName="estatus" readonly />
+    </div>-->
+
+    <div class="mb-3">
+      <label class="form-label">✨ Destacado</label>
+      <select class="form-select" formControlName="destacado">
+        <option value="S">Sí</option>
+        <option value="N">No</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">📚 Categoría</label>
+      <select formControlName="idCategoria" class="form-select">
+        <option value="" disabled>Selecciona una categoría</option>
+        @for (categoria of categorias; track categoria.id) {
+          <option [value]="categoria.id">{{ categoria.nombre }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">📋 Detalles</label>
+      <textarea formControlName="detalles" class="form-control" rows="4"></textarea>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button class="btn btn-outline-secondary me-2" [routerLink]="['/vacantes/todas']" type="button">← Volver</button>
+      <button type="submit" class="btn btn-outline-success" [disabled]="form.invalid">Crear</button>
+    </div>
+  </form>
+</section>

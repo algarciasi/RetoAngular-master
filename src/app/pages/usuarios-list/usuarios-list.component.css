@@ -1,0 +1,31 @@
+h3 {
+    font-weight: 700;
+    color: #0d47a1;
+  }
+  
+  .table {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .table thead th {
+    background-color: #1565c0 !important;
+    color: #ffffff;
+  }
+  
+  .btn {
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  

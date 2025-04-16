@@ -1,0 +1,86 @@
+/* Título centrado */
+h3.text-center {
+  font-weight: 700;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+/* Tabla */
+.table {
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: left;
+  padding: 12px;
+}
+
+.table thead th {
+  background-color: #1565c0 !important;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.table thead th:hover {
+  background-color: #0d47a1 !important;
+}
+
+/* Botones nav */
+.navbar-btn {
+  min-width: 140px;
+  font-weight: 500;
+  margin-left: 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Botón success */
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Botón danger */
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Botón secondary */
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Botón general hover */
+.btn {
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

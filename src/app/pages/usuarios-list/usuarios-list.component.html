@@ -1,32 +1,46 @@
 <section class="container mt-5">
-  <h3>Gestión de Usuarios</h3>
-  <hr>
+  <h3 class="text-center text-primary">Lista de Usuarios</h3>
+  <hr />
 
-  <table class="table table-striped mt-3">
-    <thead class="table-dark">
-      <tr>
-        <th>Email</th>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Rol</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (user of usuarios; track user.email) {
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-striped mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th (click)="ordenarPor('email')" style="cursor: pointer;">
+            📧 Email {{ campoOrden === 'email' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('nombre')" style="cursor: pointer;">
+            👤 Nombre {{ campoOrden === 'nombre' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('apellidos')" style="cursor: pointer;">
+            👥 Apellidos {{ campoOrden === 'apellidos' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th (click)="ordenarPor('rol')" style="cursor: pointer;">
+            🛡️ Rol {{ campoOrden === 'rol' ? (ascendente ? '🔼' : '🔽') : '' }}
+          </th>
+          <th class="text-center">⚙️ Acciones</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        @for (user of usuarios; track user.email) {
         <tr>
           <td>{{ user.email }}</td>
           <td>{{ user.nombre }}</td>
           <td>{{ user.apellidos }}</td>
           <td>{{ user.rol }}</td>
-          <td>
-            <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(user.email)">
+          <td class="text-center">
+            <button class="btn btn-outline-danger btn-sm" (click)="eliminarUsuario(user.email)">
               Eliminar
             </button>
           </td>
         </tr>
-      }
-    </tbody>
-    <button class="btn btn-secondary me-2" [routerLink]="['/admon']" type="button">← Volver</button>
-  </table>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-end mt-4">
+    <button class="btn btn-outline-secondary" [routerLink]="['/admon']" type="button">← Volver</button>
+  </div>
 </section>
