@@ -17,11 +17,11 @@
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Inicio</a>
         </li>
 
-        @if (!(isLoggedIn() && usuario()?.rol === 'EMPRESA')) {
+        <!--@if (!(isLoggedIn() && usuario()?.rol === 'EMPRESA')) {
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/registro']" routerLinkActive="active">Registro</a>
         </li>
-        }
+      }-->
 
         @if (isLoggedIn()) {
         <li class="nav-item">
@@ -30,18 +30,27 @@
           </a>
         </li>
 
-        <!-- ADMON -->
         @if (usuario()?.rol === 'ADMON') {
-        <li class="nav-item">
-          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/empresas/nueva']">🏢 Alta Empresa</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-outline-light navbar-btn" [routerLink]="['/categorias/lista']">🗂️ Alta Categoría</a>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-outline-light navbar-btn" [routerLink]="['/usuarios']">🧍‍♂️ Baja Usuario</button>
-        </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light navbar-btn" [routerLink]="['/empresas/nueva']">🏢 Alta Empresa</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light navbar-btn" [routerLink]="['/categorias/lista']">🗂️ Alta Categoría</a>
+          </li>
         }
+        
+        @if (usuario()?.rol === 'ADMON' || usuario()?.rol === 'CLIENTE') {
+          <li class="nav-item">
+            <a class="btn btn-outline-light navbar-btn" [routerLink]="['/registro']">🧍 Alta Usuario</a>
+          </li>
+        }
+        
+        @if (usuario()?.rol === 'ADMON') {
+          <li class="nav-item">
+            <button class="btn btn-outline-light navbar-btn" [routerLink]="['/usuarios']">🧍‍♂️ Baja Usuario</button>
+          </li>
+        }
+        
 
         <!-- EMPRESA -->
         @if (usuario()?.rol === 'EMPRESA') {
