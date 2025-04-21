@@ -17,11 +17,11 @@
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Inicio</a>
         </li>
 
-        <!--@if (!(isLoggedIn() && usuario()?.rol === 'EMPRESA')) {
+        @if (!(isLoggedIn() && usuario()?.rol === 'EMPRESA')) {
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/registro']" routerLinkActive="active">Registro</a>
-        </li>
-      }-->
+            <a class="btn btn-outline-light navbar-btn" [routerLink]="['/registro']">🧍 Alta Usuario</a>
+          </li>
+      }
 
         @if (isLoggedIn()) {
         <li class="nav-item">
