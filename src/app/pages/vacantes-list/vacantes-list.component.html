@@ -3,14 +3,16 @@
   <hr />
 
   @if (!authService.isCliente()) {
-  <div class="d-flex justify-content-end mb-3">
-    <a class="btn btn-outline-primary navbar-btn" [routerLink]="['/vacantes/nueva']">➕ Crear Vacante</a>
-  </div>
+    <div class="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
+      <a class="btn btn-outline-primary navbar-btn" [routerLink]="['/vacantes/nueva']">➕ Crear Vacante</a>
+      <a class="btn btn-outline-primary navbar-btn" [routerLink]="['/vacantes/buscar']">🔍 Buscar Vacantes</a>
+    </div>
+  } @else {
+    <div class="d-flex justify-content-end align-items-center mb-3">
+      <a class="btn btn-outline-primary navbar-btn" [routerLink]="['/vacantes/buscar']">🔍 Buscar Vacantes</a>
+    </div>
   }
-
-  <div class="d-flex justify-content-end mb-3">
-    <a routerLink="/vacantes/buscar" class="btn btn-outline-primary navbar-btn">🔍 Buscar Vacantes</a>
-  </div>
+  
 
   <div class="table-responsive shadow-sm">
     <table class="table table-striped mt-3">
