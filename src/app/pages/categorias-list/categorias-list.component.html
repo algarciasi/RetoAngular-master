@@ -2,9 +2,10 @@
   <h3 class="text-center text-primary">Listado de Categorías</h3>
   <hr />
 
-  <div class="mb-3 text-end">
-    <a class="btn btn-outline-light navbar-btn" [routerLink]="['/categorias/nueva']">➕ Nueva Categoría</a>
+  <div class="d-flex justify-content-end mb-3">
+    <a class="btn btn-outline-primary navbar-btn" [routerLink]="['/categorias/nueva']">➕ Nueva Categoría</a>
   </div>
+  
 
   @if (categorias.length > 0) {
   <table class="table table-striped shadow-sm mt-3">
