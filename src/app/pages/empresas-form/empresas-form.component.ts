@@ -46,7 +46,7 @@ export class EmpresaFormComponent implements OnInit {
   
     if (rawId && !isNaN(id) && id > 0) {
       console.log('[EDITAR EMPRESA] ID de la ruta:', id);
-      this.http.get<Empresa>(`http://localhost:8086/empresas/buscar/${id}`)
+      this.http.get<Empresa>(`https://algarciasi.com/api/empresas/buscar/${id}`)
         .subscribe({
           next: (data) => this.empresa = data,
           error: (err) => {
@@ -95,7 +95,8 @@ export class EmpresaFormComponent implements OnInit {
       usuario: usuarioPayload
     };
 
-    this.http.put(`http://localhost:8086/empresas/editar/${id}`, payload)
+    //this.http.put(`http://localhost:8086/empresas/editar/${id}`, payload)
+    this.http.put(`https://algarciasi.com/api/empresas/editar/${id}`, payload)
       .subscribe({
         next: () => {
           alert('✅ Empresa actualizada');

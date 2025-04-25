@@ -59,7 +59,8 @@ export class EmpresaNuevaComponent {
       headers = headers.set('Authorization', 'Basic ' + btoa(`${email}:${password}`));
     }
 
-    this.http.post(`http://localhost:8086/empresas/nueva`, payload, { headers })
+    //this.http.post(`http://localhost:8086/empresas/nueva`, payload, { headers })
+    this.http.post(`https://algarciasi.com/api/empresas/nueva`, payload, { headers })
       .subscribe({
         next: () => {
           alert('Empresa creada correctamente');

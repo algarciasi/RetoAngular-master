@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Empresa } from '../interface/empresa';
+import { environment } from '../../environments/environment.prod';
 
 
 @Injectable({
@@ -9,7 +10,10 @@ import { Empresa } from '../interface/empresa';
 })
 export class EmpresaService {
   httpClient = inject(HttpClient);
-  private baseUrl: string = 'http://localhost:8086/empresas';
+  //private baseUrl: string = 'http://localhost:8086/empresas';
+  //private baseUrl : string = 'https://algarciasi.com/api/empresas';
+  private baseUrl: string = `${environment.apiBaseUrl}/empresas`;
+
   insertObservable: any;
 
   constructor() {}
@@ -101,7 +105,9 @@ export class EmpresaService {
       );
     }
   
-    return this.httpClient.delete<void>(`http://localhost:8086/empresas/eliminar/${id}`, {
+    //return this.httpClient.delete<void>(`http://localhost:8086/empresas/eliminar/${id}`, {
+    return this.httpClient.delete<void>(`${this.baseUrl}/eliminar/${id}`, {
+
       headers,
     });
   }

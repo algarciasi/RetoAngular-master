@@ -3,11 +3,18 @@ import { Injectable, signal, computed } from '@angular/core';
 import { Usuario } from '../interface/usuario';
 import { Observable, tap, map } from 'rxjs';
 import { Router } from '@angular/router'; // Importa el Router
+import { environment } from '../../environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  
+  private apiBase = environment.apiBaseUrl;
+
+
   private _usuario = signal<Usuario | null>(null);
 
   readonly usuario = computed(() => this._usuario());
@@ -54,7 +61,8 @@ export class AuthService {
     }
 
     return this.http
-      .get<any>('http://localhost:8086/auth/login', { headers: headers })
+      //.get<any>('http://localhost:8086/auth/login', { headers: headers })
+      .get<any>(`${this.apiBase}/auth/login`, { headers })
       .pipe(
         tap((response) => {
           console.log('Login exitoso:', response);

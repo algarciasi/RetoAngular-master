@@ -21,7 +21,7 @@
         <li class="nav-item">
             <a class="btn btn-outline-light navbar-btn" [routerLink]="['/registro']">🧍 Alta Usuario</a>
           </li>
-      }
+        }
 
         @if (isLoggedIn()) {
         <li class="nav-item">
@@ -39,11 +39,12 @@
           </li>
         }
         
-        @if (usuario()?.rol === 'ADMON' || usuario()?.rol === 'CLIENTE') {
+
+        <!--@if (usuario()?.rol === 'ADMON' || usuario()?.rol === 'CLIENTE') {
           <li class="nav-item">
             <a class="btn btn-outline-light navbar-btn" [routerLink]="['/registro']">🧍 Alta Usuario</a>
           </li>
-        }
+        }-->
         
         @if (usuario()?.rol === 'ADMON') {
           <li class="nav-item">

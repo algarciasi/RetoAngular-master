@@ -3,13 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Solicitud } from '../interface/solicitud';
 import { SolicitudNuevaDto } from '../interface/solicitud-dto';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudesService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8086/solicitudes';
+  //private apiUrl = 'http://localhost:8086/solicitudes';
+  //private apiUrl : string = 'https://algarciasi.com/api/solicitudes';
+  private apiUrl: string = `${environment.apiBaseUrl}/solicitudes`;
 
   // GET /solicitudes/todas
   obtenerTodas(): Observable<Solicitud[]> {
@@ -35,7 +38,7 @@ export class SolicitudesService {
 
   // PUT asignar vacante del endpoint de empresa "cagada"
   asignarVacante(idSolicitud: number) {
-    return this.http.put(`http://localhost:8086/empresas/asignar/${idSolicitud}`, null, {
+    return this.http.put(`https://algarciasi.com/api/empresas/asignar/${idSolicitud}`, null, {
       responseType: 'text'
     });
   }

@@ -36,7 +36,7 @@ export class NavbarComponent {
     this.usuarioService.bajaUsuarioWithObservable(email).subscribe({
       next: () => {
         alert('Usuario dado de baja correctamente');
-        this.logout(); // 👈 cerramos sesión
+        this.logout(); 
       },
       error: (err) => {
         console.error('Error al dar de baja al usuario', err);
